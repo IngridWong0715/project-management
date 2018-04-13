@@ -1,0 +1,8 @@
+<%= current_user.name %>
+Your projects are:
+<%= @projects.each do |project| %>
+  <%= link_to project.name, project_path(project) %>
+<% end %>
+
+<%= form_tag('/logout') %>
+<input type="submit" value="Log Out">

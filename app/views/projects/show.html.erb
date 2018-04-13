@@ -1,0 +1,19 @@
+LIST SHOW PAGE <br>
+
+Existing tasks <br>
+
+<%= @project.tasks.each do |task| %>
+  <%= task.name %>
+  <%= task.description %>
+<% end %> <br>
+
+
+New task:
+<%= form_for [@project, @task] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.hidden_field :project_id, value: @project.id %>
+  <%= f.submit %>
+<% end %>
