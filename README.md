@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+FOR USER.RB
+
+has_and_belongs_to_many :teams
+has_many :projects
+has_many :tasks, through: :projects
+
+has_secure_password
+validates :name, presence: true
+validates :email, presence: true

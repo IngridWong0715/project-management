@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     if !User.find_by(email: params[:user][:email])
+      binding.pry
       user = User.create(user_params)
       session[:user_id] = user.id
       redirect_to home_path
