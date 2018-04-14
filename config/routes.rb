@@ -3,11 +3,6 @@ Rails.application.routes.draw do
   root to: 'welcome#welcome'
 
 
-
-
-  resources :users, only: [:new, :create]
-
-
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
   get '/home', to: 'users#show' #show page? Or like a user home page?
 

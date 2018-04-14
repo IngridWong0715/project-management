@@ -1,0 +1,2 @@
+- Fix line 23 in app/views/devise/shared/_links.html.erb
+ -> right now only allows facebook

@@ -9,9 +9,6 @@ class User < ApplicationRecord
   has_many :projects
   has_many :tasks, through: :projects
 
-  has_secure_password
-  validates :name, presence: true
-  validates :email, presence: true
 
   def self.new_with_session(params, session)
     super.tap do |user|
