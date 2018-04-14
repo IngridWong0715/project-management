@@ -15,12 +15,15 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    if current_user.projects.create(project_params).valid?
+    project = current_user.projects.create(project_params)
+    if project.save
       flash[:notice] = "project created successfully"
+      redirect_to project_path(project)
     else
       flash[:warning] = "project not created"
+      redirect_to root_path
     end
-    redirect_to projects_path
+
 
   end
 
