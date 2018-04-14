@@ -3,7 +3,3 @@ ISSUES
 
 1. Fix line 23 in app/views/devise/shared/_links.html.erb
  -> right now only allows facebook
-
-
-2. Devise sign in and authenticated_root
-  

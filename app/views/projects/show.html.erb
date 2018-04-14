@@ -1,11 +1,29 @@
 PROJECT SHOW PAGE <br>
 
 Existing tasks <br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Task Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @project.tasks.each do |task| %>
+    <tr>
+      <th scope="row">1</th>
+      <td><%=task.name%></td>
+      <td><%=task.description%></td>
+      <% binding.pry %>
+      <td><%= link_to task.name, project_task_path(@project.id,task.id) %></td>
+    </tr>
+    <% end %>
 
-<%= @project.tasks.each do |task| %>
-  <%= task.name %>
-  <%= task.description %>
-<% end %> <br>
+  </tbody>
+</table>
+
 
  <br> <br>
 New task:
