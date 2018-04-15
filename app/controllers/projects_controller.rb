@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = current_user.projects
@@ -7,11 +7,6 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-  end
-
-  def show
-    @project = Project.find(params[:id])
-    @task = @project.tasks.new
   end
 
   def create
@@ -23,8 +18,9 @@ class ProjectsController < ApplicationController
       flash[:warning] = "project not created"
       redirect_to root_path
     end
+  end
 
-
+  def show
   end
 
   def edit

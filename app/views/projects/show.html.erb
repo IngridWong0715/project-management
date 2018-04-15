@@ -1,6 +1,5 @@
 PROJECT SHOW PAGE <br>
 
-Existing tasks <br>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -13,11 +12,11 @@ Existing tasks <br>
   <tbody>
     <%= @project.tasks.each do |task| %>
     <tr>
-      <th scope="row">1</th>
+      <th scope="row"></th>
       <td><%=task.name%></td>
       <td><%=task.description%></td>
-      <% binding.pry %>
-      <td><%= link_to task.name, project_task_path(@project.id,task.id) %></td>
+      <td><%= link_to "view task", project_task_path(@project.id, task.id)%></td>
+
     </tr>
     <% end %>
 
@@ -25,13 +24,4 @@ Existing tasks <br>
 </table>
 
 
- <br> <br>
-New task:
-<%= form_for [@project, @task] do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.hidden_field :project_id, value: @project.id %>
-  <%= f.submit %>
-<% end %>
+<%= link_to 'Create new task', new_project_task_path(@project.id) %>

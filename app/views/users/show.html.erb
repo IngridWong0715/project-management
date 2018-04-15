@@ -3,29 +3,45 @@
 
 Logged in as <strong><%= current_user.email %></strong>.
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Project Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Collabortors</th>
-      <th scope="col">Link</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= @projects.each do |project| %>
-    <tr>
-      <th scope="row">1</th>
-      <td><%=project.name%></td>
-      <td><%=project.description%></td>
-      <td>me</td>
-      <td><%= link_to project.name, project_path(project) %></td>
-    </tr>
-    <% end %>
+<br><br>
 
-  </tbody>
-</table>
+Here are your teams.
+Create a new team: 
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      INDIVIDUAL PROJECTS
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Collabortors</th>
+            <th scope="col">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= @projects.each do |project| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%=project.name%></td>
+            <td><%=project.description%></td>
+            <td>me</td>
+            <td><%= link_to project.name, project_path(project) %></td>
+          </tr>
+          <% end %>
 
-<%= link_to 'Create new project', new_project_path %>
+        </tbody>
+      </table>
+
+      <%= link_to 'Create new individual project', new_project_path %>
+    </div>
+    <div class="col-sm">
+      GROUP PROJECTS
+      ---- à faire ---
+    </div>
+
+  </div>
+</div>

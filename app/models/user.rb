@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_and_belongs_to_many :teams
+ has_many :team_users
+ has_many :teams, through: :team_users
+
   has_many :projects
   has_many :tasks, through: :projects
 
