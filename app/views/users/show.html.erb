@@ -5,8 +5,7 @@ Logged in as <strong><%= current_user.email %></strong>.
 
 <br><br>
 
-Here are your teams.
-Create a new team: 
+
 
 <div class="container">
   <div class="row">
@@ -23,7 +22,7 @@ Create a new team:
           </tr>
         </thead>
         <tbody>
-          <%= @projects.each do |project| %>
+          <% @projects.each do |project| %>
           <tr>
             <th scope="row">1</th>
             <td><%=project.name%></td>
@@ -39,6 +38,14 @@ Create a new team:
       <%= link_to 'Create new individual project', new_project_path %>
     </div>
     <div class="col-sm">
+
+      Here are your teams.
+      <%= render partial: "teams/team", collection: current_user.teams %>
+
+  
+        <br>
+      <%= link_to "Create a new team", new_team_path %>
+      <br><br>
       GROUP PROJECTS
       ---- à faire ---
     </div>

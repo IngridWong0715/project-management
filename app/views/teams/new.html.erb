@@ -1,0 +1,12 @@
+New team:
+
+<%= form_for @team do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :function %>
+  <%= f.text_field :function %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.collection_check_boxes :user_ids, User.all, :id, :name %>
+  <%= f.submit %>
+<% end %>
