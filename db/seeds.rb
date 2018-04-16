@@ -5,3 +5,41 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+ingrid = User.create(name:"Ingrid", email: "ingrid830715@gmail.com", password: "ingridWONG830715")
+victoria = User.create(name: "Victoria", email: "victoria@gmail.com", password: "victoria")
+karmun = User.create(name: "Karmun", email: "karmun@gmail.com", password:"karmun")
+tommy = User.create(name: "Tommy", email: "tommy@gmail.com", password: "tommytung")
+ida = User.create(name: "Ida", email:"ida@gmail.com", password:"idahosbond")
+
+
+team1 = Team.create(name: "team 1")
+team2 = Team.create(name: "team 2")
+
+team1.users << ingrid
+team1.users << victoria
+team1.users << karmun
+team2.users << tommy
+team2.users << ida
+
+project1 = Project.create(name: "project 1")
+project2 = Project.create(name: "project 2")
+project3 = Project.create(name: "project 3")
+project4 = Project.create(name: "project 4")
+project5 = Project.create(name: "project 5")
+project6 = Project.create(name: "project 6")
+
+team1.projects << project1
+team1.projects << project2
+team2.projects << project3
+team2.projects << project4
+ingrid.projects << project5
+ingrid.projects << project6
+
+project1.tasks.create([{name:"task 1"},{name:"task 2"}])
+project2.tasks.create([{name:"task 1"},{name:"task 2"}])
+project3.tasks.create([{name:"task 1"},{name:"task 2"}])
+project4.tasks.create([{name:"task 1"},{name:"task 2"}])
+project5.tasks.create([{name:"task 1"},{name:"task 2"}])
+project6.tasks.create([{name:"task 1"},{name:"task 2"}])

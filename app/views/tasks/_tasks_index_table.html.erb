@@ -1,0 +1,22 @@
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Task Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% project.tasks.each do |task| %>
+    <tr>
+      <th scope="row"></th>
+      <td><%=task.name%></td>
+      <td><%=task.description%></td>
+      <td><%= link_to "view task", project_task_path(@project.id, task.id)%></td>
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>

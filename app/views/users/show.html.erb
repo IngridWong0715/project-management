@@ -42,12 +42,39 @@ Logged in as <strong><%= current_user.email %></strong>.
       Here are your teams.
       <%= render partial: "teams/team", collection: current_user.teams %>
 
-  
+
         <br>
       <%= link_to "Create a new team", new_team_path %>
       <br><br>
       GROUP PROJECTS
       ---- à faire ---
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Team</th>
+            <th scope="col">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.teams.each do |team| %>
+
+          <% team.projects.each do |project| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%=project.name%></td>
+            <td><%=project.description%></td>
+            <td><%=project.team.name%></td>
+            <td><%= link_to project.name, project_path(project) %></td>
+          </tr>
+          <% end %>
+          <% end %>
+
+        </tbody>
+      </table>
     </div>
 
   </div>
