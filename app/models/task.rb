@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   delegate :team, :user, :to => :project, :allow_nil => true #implements the belongs_to, through relationship
   validates :name, presence: true
 
-    def self.search_by_name(name)
+    def self.find_by_name(name)
       where(name: name)
     end
 

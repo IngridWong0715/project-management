@@ -36,6 +36,11 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def search
+    @projects = Project.find_by_name(params[:project][:name])
+    render 'search'
+  end
+
   private
 
   def project_params

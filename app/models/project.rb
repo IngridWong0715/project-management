@@ -5,7 +5,7 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
 
-  def self.search_by_name(name)
+  def self.find_by_name(name)
     where(name: name)
   end
 

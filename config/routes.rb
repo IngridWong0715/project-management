@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   end
 
+  post '/search_task', to: 'tasks#search'
+  post '/search_project', to: 'projects#search'
+  
   root to: 'welcome#welcome'
 
   resources :teams

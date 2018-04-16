@@ -21,6 +21,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def search
+    @tasks = Task.find_by_name(params[:task][:name])
+    render 'search'
+  end
+
   private
 
   def task_params
