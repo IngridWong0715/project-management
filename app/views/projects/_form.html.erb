@@ -3,6 +3,7 @@
   <%= f.text_field :name %>
   <%= f.label :description %>
   <%= f.text_area :description %>
+  <%= f.datetime_field :due_date %>
   <%= f.collection_select :team_id, Team.all, :id, :name %>
   <%= f.submit %>
 <% end %>
@@ -13,4 +14,4 @@ LOGIC:
 either it's an individual project
 - use user_id
 or it's a group project:
-- user team_id 
+- user team_id

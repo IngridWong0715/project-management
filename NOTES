@@ -8,3 +8,9 @@ ISSUES
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form
 
 -----
+
+1. Implement search function in home page
+- search for project by name
+- search for task by name
+- search by team (needs to be a team that the user's in )
+- search by due date: past due, due today, due in a week, due in 2 weeks...
