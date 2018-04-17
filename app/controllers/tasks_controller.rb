@@ -29,9 +29,8 @@ class TasksController < ApplicationController
       @tasks = Task.due_in(params[:task][:data][:due])
     end
 
-
     render 'search'
-  
+
   end
 
   private

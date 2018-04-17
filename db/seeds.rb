@@ -23,12 +23,12 @@ team1.users << karmun
 team2.users << tommy
 team2.users << ida
 
-project1 = Project.create(name: "project 1")
-project2 = Project.create(name: "project 2")
-project3 = Project.create(name: "project 3")
-project4 = Project.create(name: "project 4")
-project5 = Project.create(name: "project 5")
-project6 = Project.create(name: "project 6")
+project1 = Project.create(name: "project 1", due_date: (DateTime.now + 1.month).to_s)
+project2 = Project.create(name: "project 2", due_date: (DateTime.now + 2.months).to_s)
+project3 = Project.create(name: "project 3", due_date: (DateTime.now + 3.months).to_s)
+project4 = Project.create(name: "project 4", due_date: (DateTime.now + 4.months).to_s)
+project5 = Project.create(name: "project 5", due_date: (DateTime.now + 5.months).to_s)
+project6 = Project.create(name: "project 6", due_date: (DateTime.now + 6.months).to_s)
 
 team1.projects << project1
 team1.projects << project2
@@ -43,3 +43,10 @@ project3.tasks.create([{name:"task 1"},{name:"task 2"}])
 project4.tasks.create([{name:"task 1"},{name:"task 2"}])
 project5.tasks.create([{name:"task 1"},{name:"task 2"}])
 project6.tasks.create([{name:"task 1"},{name:"task 2"}])
+
+
+ingrid.projects.create(name:"due today project", due_date: (DateTime.now).to_s)
+ingrid.projects.create(name:"due tomorrow project", due_date: (DateTime.now + 1.day).to_s)
+ingrid.projects.create(name:"due within a week project", due_date: (DateTime.now + 1.week).to_s)
+ingrid.projects.create(name:"due within 2 weeks project", due_date: (DateTime.now + 2.weeks).to_s)
+ingrid.projects.create(name:"due within a month project", due_date: (DateTime.now + 1.month).to_s)

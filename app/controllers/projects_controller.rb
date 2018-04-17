@@ -37,14 +37,18 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    @projects = Project.find_by_name(params[:project][:name])
+    if !params[:project][:name].empty?
+      @projects = Project.find_by_name(params[:project][:name])
+    elsif params[:project][:data][:due]
+      @projects = Project.due_in(params[:project][:data][:due])
+    end
     render 'search'
   end
 
   private
 
   def project_params
-    params.require(:project).permit(:name, :description, :team_id, :user_id, :due_date)
+    params.require(:project).permit(:name, :description, :team_id, :user_id, :due_date, data: params[:project][:data].try(:keys))
   end
 
   def set_project

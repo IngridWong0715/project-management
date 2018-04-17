@@ -16,16 +16,25 @@ Search
       <div class="modal-body">
         <%= form_for :project, url: search_project_path do |f| %>
         <%= f.text_field :name, placeholder: "search project" %>
+        <select name="project[data][due]">
+          <option value="0">Due Today</option>
+          <option value="1">Due Tomorrow</option>
+          <option value="7">Due Within A Week</option>
+          <option value="14">Due Within 2 Weeks</option>
+          <option value="30">Due Within A Month</option>
+        </select>
         <%= f.submit "search" %>
         <% end %>
 
         <%= form_for :task, url: search_task_path do |f| %>
         <%= f.text_field :name, placeholder: "search task" %>
-        <%= f.text_field :description %>
 
         <select name="task[data][due]">
           <option value="0">Due Today</option>
           <option value="1">Due Tomorrow</option>
+          <option value="7">Due Within A Week</option>
+          <option value="14">Due Within 2 Weeks</option>
+          <option value="30">Due Within A Month</option>
         </select>
         <%= f.submit "search" %>
         <% end %>
