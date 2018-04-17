@@ -6,6 +6,9 @@ TASK DETAILS
 
 <%= @task.due_date %>
 
+<%= link_to "Edit Task", edit_project_task_path(@task.project.id, @task.id) %>
+<%= link_to "Delete Task", project_task_path(@task.project.id, @task.id), method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+
 Have a "add checklist"
 Have an "add attachment"
 

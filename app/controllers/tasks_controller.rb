@@ -11,6 +11,10 @@ class TasksController < ApplicationController
     redirect_to project_path(task.project)
   end
 
+  def edit
+    @project = @task.project
+  end
+
   def update
     if @task.update(task_params)
       flash[:notice] = "task updated successfully"
@@ -19,6 +23,12 @@ class TasksController < ApplicationController
       flash[:notice] = "unable to update task"
       render "tasks/form"
     end
+  end
+
+  def destroy
+    @task.destroy
+    flash[:notice] = "task deleted successfully"
+    redirect_to project_path(@task.project.id)
   end
 
   def search
@@ -41,7 +51,7 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
-    
+
     if @task.user == current_user || current_user.teams.include?(@task.team)
       @task
     else
