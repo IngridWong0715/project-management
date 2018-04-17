@@ -6,4 +6,5 @@ class Team < ApplicationRecord
   has_many :tasks, through: :projects
 
   validates :name, presence: true
+  accepts_nested_attributes_for :projects
 end

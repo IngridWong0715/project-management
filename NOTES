@@ -1,7 +1,7 @@
 ISSUES
 1. FIX THE REST OF PROJECT METHODS TO INCLUDE USER!
 
-1. In new project form, allow for creation of a new team 
+1. In new project form, allow for creation of a new team
 
 1. Fix line 23 in app/views/devise/shared/_links.html.erb
  -> right now only allows facebook
@@ -23,6 +23,8 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form
 
 4.Project.group_projects: WHY NESTED ARRAY? (Project.rb)
 
+LAST: Compare with this:
+https://learn.co/tracks/full-stack-web-development-v5/rails/crud-with-rails/resource-generator-routes
 -----
 
 1. Implement search function in home page

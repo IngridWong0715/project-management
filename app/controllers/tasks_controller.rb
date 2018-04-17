@@ -32,7 +32,6 @@ class TasksController < ApplicationController
   end
 
   def search
-
     if !params[:task][:name].empty?
       @tasks = Task.find_by_name(current_user, params[:task][:name])
     elsif params[:task][:data][:due]
