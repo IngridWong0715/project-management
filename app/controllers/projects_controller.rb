@@ -27,8 +27,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project.update(project_params).valid?
-    redirect_to projects_path
+      if @project.update(project_params)
+        flash[:notice] = "project edited successfully"
+        redirect_to project_path(@project.id)
+      else
+        flash[:notice] = "project not edited"
+        redirect_to edit_project_path(@project.id)
+      end
   end
 
   def destroy
@@ -53,5 +58,11 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+    if @project.user == current_user || current_user.teams.include?(@project.team)
+      @project
+    else
+      flash[:warning] = "You can only access projects that belong to you and your teams"
+      redirect_to root_path
+    end
   end
 end

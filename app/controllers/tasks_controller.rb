@@ -41,6 +41,12 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
-    @project = @task.project
+    
+    if @task.user == current_user || current_user.teams.include?(@task.team)
+      @task
+    else
+      flash[:warning] = "You can only access task that belong to you and your teams"
+      redirect_to root_path
+    end
   end
 end
