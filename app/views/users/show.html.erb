@@ -5,27 +5,25 @@ Logged in as <strong><%= current_user.email %></strong>.
 
 <br><br>
 
-<%= render "search_modal" %>
 
 <div class="container">
   <div class="row">
     <div class="col-sm">
+      <%= link_to 'Create a new project', new_project_path %>
       INDIVIDUAL PROJECTS
        <%= render partial: "projects/projects_index_table", locals: {projects: @individual_projects} %>
 
-      <%= link_to 'Create a new project', new_project_path %>
+
     </div>
     <div class="col-sm">
 
       Here are your teams.
       <%= render partial: "teams/team", collection: current_user.teams %>
-
-
         <br>
       <%= link_to "Create a new team", new_team_path %>
       <br><br>
       GROUP PROJECTS
-  
+
       <%= render partial: "projects/projects_index_table", locals: {projects: @group_projects} %>
 
 

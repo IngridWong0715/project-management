@@ -1,6 +1,8 @@
 ISSUES
 1. FIX THE REST OF PROJECT METHODS TO INCLUDE USER!
 
+1. In new project form, allow for creation of a new team 
+
 1. Fix line 23 in app/views/devise/shared/_links.html.erb
  -> right now only allows facebook
 
