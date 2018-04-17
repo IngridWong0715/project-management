@@ -36,7 +36,7 @@ class Task < ApplicationRecord
       days_in_int = days.to_i
 
       all_user_tasks(user).select do |task|
-      
+
         dates_diff = (task.due_date.to_date - Date.today).to_i
         if days_in_int == 0 || days_in_int == 1
           dates_diff  == days_in_int

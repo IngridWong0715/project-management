@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-   def new #/projects/:project_id/tasks/new(.:format)
+   def new 
      @project = Project.find(params[:project_id])
      @task = @project.tasks.new
    end

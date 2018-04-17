@@ -6,8 +6,14 @@ class TeamsController < ApplicationController
   end
 
   def create
-    team = Team.create(team_params)
-    redirect_to team_path(team.id)
+    team = Team.new(team_params)
+    if team.save
+      flash[:notice] = "team created successfully"
+      redirect_to team_path(team)
+    else
+      flash[:warning] = "team not created"
+      redirect_to root_path
+    end
   end
 
   def show

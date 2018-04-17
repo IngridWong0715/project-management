@@ -1,26 +1,10 @@
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Project Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Individual/Team</th>
-      <th scope="col">Link</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% projects.each do |project| %>
-
-    <tr>
-      <th scope="row">1</th>
-      <td><%=project.name%></td>
-    
-      <td><%=project.description%></td>
-      <td><%=project.team ? project.team.name : "me "%></td>
-      <td><%= link_to project.name, project_path(project) %></td>
-    </tr>
-    <% end %>
-
-  </tbody>
-</table>
+<div class="list-group">
+  Individual Projects
+  <% individual_projects.each do |project| %>
+    <%= link_to(project.name, project_path(project), class:"list-group-item list-group-item-action") %>
+  <%end %>
+  Group Projects
+  <% group_projects.each do |project| %>
+    <%= link_to(project.name, project_path(project), class:"list-group-item list-group-item-action") %>
+  <%end %>
+</div>

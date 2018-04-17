@@ -1,31 +1,18 @@
-<%= link_to 'Edit Profile', edit_user_registration_path %> |
-<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-
-Logged in as <strong><%= current_user.email %></strong>.
-
-<br><br>
-
 
 <div class="container">
   <div class="row">
-    <div class="col-sm">
-      <%= link_to 'Create a new project', new_project_path %>
-      INDIVIDUAL PROJECTS
-       <%= render partial: "projects/projects_index_table", locals: {projects: @individual_projects} %>
+    <div class="col-sm-4">
+       <%= render partial: "projects/projects_index_table", locals: {group_projects: @group_projects, individual_projects: @individual_projects} %>
 
+       <%= link_to 'Create a new project', new_project_path %><br>
 
     </div>
-    <div class="col-sm">
-
+    <div class="col-sm-8">
       Here are your teams.
       <%= render partial: "teams/team", collection: current_user.teams %>
         <br>
       <%= link_to "Create a new team", new_team_path %>
       <br><br>
-      GROUP PROJECTS
-
-      <%= render partial: "projects/projects_index_table", locals: {projects: @group_projects} %>
-
 
     </div>
 

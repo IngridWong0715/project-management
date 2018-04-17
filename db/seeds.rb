@@ -46,7 +46,7 @@ project5.tasks.create([{name:"task 1", due_date: (DateTime.now).to_s},{name:"tas
 project6.tasks.create([{name:"task 1", due_date: (DateTime.now).to_s},{name:"task 2", due_date: (DateTime.now + 2.weeks).to_s}])
 
 karmun.projects.create(name:"KARMUN'S PROJECT!!!", due_date: (DateTime.now).to_s)
-ingrid.projects.create(name:"past today project", due_date: (DateTime.now - 1.day).to_s)
+ingrid.projects.create(name:"past due project", due_date: (DateTime.now - 1.day).to_s)
 ingrid.projects.create(name:"due today project", due_date: (DateTime.now).to_s)
 ingrid.projects.create(name:"due tomorrow project", due_date: (DateTime.now + 1.day).to_s)
 ingrid.projects.create(name:"due within a week project", due_date: (DateTime.now + 1.week).to_s)
