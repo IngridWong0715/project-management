@@ -18,6 +18,7 @@ team1 = Team.create(name: "team 1")
 team2 = Team.create(name: "team 2")
 
 team1.users << ingrid
+team2.users << ingrid
 team1.users << victoria
 team1.users << karmun
 team2.users << tommy
@@ -44,6 +45,7 @@ project4.tasks.create([{name:"task 1"},{name:"task 2"}])
 project5.tasks.create([{name:"task 1"},{name:"task 2"}])
 project6.tasks.create([{name:"task 1"},{name:"task 2"}])
 
+karmun.projects.create(name:"KARMUN'S PROJECT!!!", due_date: (DateTime.now).to_s)
 
 ingrid.projects.create(name:"due today project", due_date: (DateTime.now).to_s)
 ingrid.projects.create(name:"due tomorrow project", due_date: (DateTime.now + 1.day).to_s)

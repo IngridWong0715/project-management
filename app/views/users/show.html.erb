@@ -11,29 +11,7 @@ Logged in as <strong><%= current_user.email %></strong>.
   <div class="row">
     <div class="col-sm">
       INDIVIDUAL PROJECTS
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Project Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Collabortors</th>
-            <th scope="col">Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @projects.each do |project| %>
-          <tr>
-            <th scope="row">1</th>
-            <td><%=project.name%></td>
-            <td><%=project.description%></td>
-            <td>me</td>
-            <td><%= link_to project.name, project_path(project) %></td>
-          </tr>
-          <% end %>
-
-        </tbody>
-      </table>
+       <%= render partial: "projects/projects_index_table", locals: {projects: @individual_projects} %>
 
       <%= link_to 'Create a new project', new_project_path %>
     </div>
@@ -47,34 +25,10 @@ Logged in as <strong><%= current_user.email %></strong>.
       <%= link_to "Create a new team", new_team_path %>
       <br><br>
       GROUP PROJECTS
-      ---- à faire ---
+  
+      <%= render partial: "projects/projects_index_table", locals: {projects: @group_projects} %>
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Project Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Team</th>
-            <th scope="col">Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% current_user.teams.each do |team| %>
 
-          <% team.projects.each do |project| %>
-          <tr>
-            <th scope="row">1</th>
-            <td><%=project.name%></td>
-            <td><%=project.description%></td>
-            <td><%=project.team.name%></td>
-            <td><%= link_to project.name, project_path(project) %></td>
-          </tr>
-          <% end %>
-          <% end %>
-
-        </tbody>
-      </table>
     </div>
 
   </div>

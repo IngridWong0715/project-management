@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
   def show
-    @user = current_user
-    @projects = @user.projects # REFACTOR THIS PATTERN?
-    @tasks = @user.tasks
+
+    @individual_projects = Project.individual_projects(current_user)
+    @group_projects = Project.group_projects(current_user)
+
 
   end
 

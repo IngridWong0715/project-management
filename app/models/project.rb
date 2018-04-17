@@ -5,6 +5,17 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
 
+
+  def self.individual_projects(user) # NECESSARY? IT"S THE SAME AS CALLING CURRENT_USER.PROJECTS
+    where(user_id: user, team_id: nil)
+  end
+
+  def self.group_projects(user)
+    user.teams.collect do |team|
+      team.projects
+    end.flatten # WHY DOES COLLECT RETURN A NESTED ARRAY? -> one inner array per team
+  end
+
   def self.find_by_name(name)
     where(name: name)
   end
