@@ -1,4 +1,3 @@
-
 <table class="table table-hover">
   <thead>
     <tr>
@@ -9,12 +8,12 @@
     </tr>
   </thead>
   <tbody>
-    <% project.tasks.each do |task| %>
+    <% tasks.each do |task| %>
     <tr>
       <th scope="row"></th>
       <td><%=task.name%></td>
       <td><%=task.description%></td>
-      <td><%= link_to "view task", project_task_path(@project.id, task.id)%></td>
+      <td><%= link_to "view task", project_task_path(task.project.id, task.id)%></td>
     </tr>
     <% end %>
 

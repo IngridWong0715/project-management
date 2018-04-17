@@ -1,2 +1,6 @@
 Your search results are: <br>
-<%= render partial: 'task', collection: @tasks %>
+
+
+variable from controller: @tasks
+
+<%= render partial: 'tasks/tasks_index_table', locals: {tasks: @tasks } %>

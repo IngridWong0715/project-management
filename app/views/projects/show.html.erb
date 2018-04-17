@@ -1,5 +1,5 @@
 PROJECT SHOW PAGE <br>
 
-<%= render partial: "tasks/tasks_index_table", locals: {project: @project} %>
+<%= render partial: "tasks/tasks_index_table", locals: {tasks: @project.tasks} %>
 
 <%= link_to 'Create new task', new_project_task_path(@project.id) %>
