@@ -16,6 +16,12 @@ class TeamsController < ApplicationController
 
   def set_team
     @team = Team.find(params[:id])
+    if @team.users.include?(current_user)
+      @team
+    else
+      flash[:warning] = "You can only access information on teams that you belong to."
+      redirect_to root_path
+    end
   end
 
   def team_params
