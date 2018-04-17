@@ -21,6 +21,12 @@ Search
 
         <%= form_for :task, url: search_task_path do |f| %>
         <%= f.text_field :name, placeholder: "search task" %>
+        <%= f.text_field :description %>
+
+        <select name="task[data][due]">
+          <option value="0">Due Today</option>
+          <option value="1">Due Tomorrow</option>
+        </select>
         <%= f.submit "search" %>
         <% end %>
       </div>

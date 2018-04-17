@@ -1,6 +1,6 @@
-Your search results are: <br>
-
-
-variable from controller: @tasks
-
-<%= render partial: 'tasks/tasks_index_table', locals: {tasks: @tasks } %>
+<% if @tasks.empty? %>
+  Your search has no result
+<% else %>
+  Your search results are: <br>
+  <%= render partial: 'tasks/tasks_index_table', locals: {tasks: @tasks } %>
+<% end %>

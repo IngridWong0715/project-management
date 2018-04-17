@@ -22,14 +22,22 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = Task.find_by_name(params[:task][:name])
+
+    if !params[:task][:name].empty?
+      @tasks = Task.find_by_name(params[:task][:name])
+    elsif params[:task][:data][:due]
+      @tasks = Task.due_in(params[:task][:data][:due])
+    end
+
+
     render 'search'
+  
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :project_id, :due_date)
+    params.require(:task).permit(:name, :description, :project_id, :due_date, data: params[:task][:data].try(:keys))
   end
 
   def set_task

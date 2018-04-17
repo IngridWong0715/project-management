@@ -1,2 +1,6 @@
-Your search results are: <br>
-<%= render partial: 'project', collection: @projects %>
+<% if @tasks.empty? %>
+  Your search has no result
+<% else %>
+  Your search results are: <br>
+  <%= render partial: 'project', collection: @projects %>
+<% end %>

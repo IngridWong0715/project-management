@@ -11,34 +11,14 @@ class Task < ApplicationRecord
       where("due_date < ?", DateTime.now)
     end
 
-    def self.due_today
-      self.due_in(0)
-    end
-
-    def self.due_tomorrow
-      self.due_in(1)
-    end
-
-    def self.due_within_one_week
-      self.due_within(7)
-    end
-    def self.due_within_two_weeks
-      self.due_within(14)
-    end
-
-    def self.due_within_one_month
-      self.due_within(31)
-    end
-
     def self.due_in(days) #only for due today and tomorrow: refactor?
+      days_in_int = days.to_i
       self.all.each.select do |task|
-        (task.due_date.to_date - Date.today).to_i == days.to_i
-      end
-    end
-
-    def self.due_within(days)
-      self.all.each.select do |task|
-        (task.due_date.to_date - Date.today).to_i < (days.to_i + 1)
+        if days_in_int == 0 || days_in_int == 1
+          (task.due_date.to_date - Date.today).to_i == days_in_int
+        else
+          (task.due_date.to_date - Date.today).to_i < (days_in_int + 1)
+        end
       end
     end
 
