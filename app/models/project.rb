@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   has_many :tasks
 
   validates :name, presence: true
+  accepts_nested_attributes_for :tasks
 
 
   def self.individual_projects(user) # NECESSARY? IT"S THE SAME AS CALLING CURRENT_USER.PROJECTS

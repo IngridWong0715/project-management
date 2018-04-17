@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @project.tasks.build
   end
 
   def create
@@ -56,7 +57,13 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description, :team_id, :user_id, :due_date, data: params[:project][:data].try(:keys))
+    params.require(:project).permit(:name, :description, :team_id, :user_id, :due_date,
+      tasks_attributes: [
+        :name,
+        :description,
+        :due_date
+      ],
+      data: params[:project][:data].try(:keys))
   end
 
   def set_project
