@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    raise params.inspect
     project = current_user.projects.create(project_params)
     if project.save
       flash[:notice] = "project created successfully"

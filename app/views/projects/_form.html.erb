@@ -4,7 +4,8 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
   <%= f.datetime_field :due_date %>
-  <%= f.collection_select :team_id, Team.all, :id, :name %>
+  A group project? Select your group here:
+  <%= f.collection_select :team_id, current_user.teams.all, :id, :name, {:include_blank => true} %>
   <%= f.submit %>
 <% end %>
 
