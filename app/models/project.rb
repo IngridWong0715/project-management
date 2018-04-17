@@ -33,7 +33,7 @@ class Project < ApplicationRecord
     end
   end
 
-  def self.due_in(user, days) #only for due today and tomorrow: refactor?
+  def self.due_in(user, days)
     days_in_int = days.to_i
     all_user_projects(user).select do |project|
       dates_diff = (project.due_date.to_date - Date.today).to_i

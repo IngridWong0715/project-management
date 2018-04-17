@@ -24,9 +24,9 @@ class TasksController < ApplicationController
   def search
 
     if !params[:task][:name].empty?
-      @tasks = Task.find_by_name(params[:task][:name])
+      @tasks = Task.find_by_name(current_user, params[:task][:name])
     elsif params[:task][:data][:due]
-      @tasks = Task.due_in(params[:task][:data][:due])
+      @tasks = Task.due_in(current_user, params[:task][:data][:due])
     end
 
     render 'search'

@@ -38,9 +38,9 @@ class ProjectsController < ApplicationController
 
   def search
     if !params[:project][:name].empty?
-      @projects = Project.find_by_name(params[:project][:name])
+      @projects = Project.find_by_name(current_user, params[:project][:name])
     elsif params[:project][:data][:due]
-      @projects = Project.due_in(params[:project][:data][:due])
+      @projects = Project.due_in(current_user, params[:project][:data][:due])
     end
     render 'search'
   end

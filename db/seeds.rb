@@ -38,12 +38,12 @@ team2.projects << project4
 ingrid.projects << project5
 ingrid.projects << project6
 
-project1.tasks.create([{name:"task 1"},{name:"task 2"}])
-project2.tasks.create([{name:"task 1"},{name:"task 2"}])
-project3.tasks.create([{name:"task 1"},{name:"task 2"}])
-project4.tasks.create([{name:"task 1"},{name:"task 2"}])
-project5.tasks.create([{name:"task 1"},{name:"task 2"}])
-project6.tasks.create([{name:"task 1"},{name:"task 2"}])
+project1.tasks.create([{name:"task 1", due_date: (DateTime.now).to_s},{name:"task 2", due_date: (DateTime.now + 2.weeks).to_s}])
+project2.tasks.create([{name:"task 1", due_date: (DateTime.now).to_s},{name:"task 2", due_date: (DateTime.now + 2.weeks).to_s}])
+project3.tasks.create([{name:"task 1", due_date: (DateTime.now).to_s},{name:"task 2", due_date: (DateTime.now + 2.weeks).to_s}])
+project4.tasks.create([{name:"task 1", due_date: (DateTime.now).to_s},{name:"task 2", due_date: (DateTime.now + 2.weeks).to_s}])
+project5.tasks.create([{name:"task 1", due_date: (DateTime.now).to_s},{name:"task 2", due_date: (DateTime.now + 2.weeks).to_s}])
+project6.tasks.create([{name:"task 1", due_date: (DateTime.now).to_s},{name:"task 2", due_date: (DateTime.now + 2.weeks).to_s}])
 
 karmun.projects.create(name:"KARMUN'S PROJECT!!!", due_date: (DateTime.now).to_s)
 ingrid.projects.create(name:"past today project", due_date: (DateTime.now - 1.day).to_s)
