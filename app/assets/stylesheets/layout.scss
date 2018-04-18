@@ -1,19 +1,21 @@
 body, html {
     height: 100%;
 }
+
 .bg {
+
     /* The image used */
-    //background-image: url("purple.jpg");
-    /* Full height */
+    background-image: url("lion.jpg");
+
+      /* Full height */
     height: 100%;
+
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 
 }
-
-
 
 // from jsfiddle: http://jsfiddle.net/kbLak/
  #sidebar {
@@ -26,7 +28,7 @@ body, html {
     bottom: 0;
     left: 0;
     border-right: 1px solid rgba(228,133,149,0);
-    background: #f8f9fa ;
+    background: transparent ;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -38,4 +40,36 @@ body, html {
     color: black;
     box-shadow: 0 0 0 rgba(0,0,0,.5);
 
+}
+
+table {
+
+
+  border: 1px solid #D8BFD8;
+}
+
+th {
+    background-color: #D8BFD8;
+    color: white;
+    opacity: 0.9;
+}
+
+td {
+    background-color: #f8f9fa;
+    color: white;
+    opacity: 0.9;
+}
+
+.formatted {
+  top: 100px;
+  background-color: #D8BFD8;
+  color: white;
+  opacity: 0.9;
+}
+
+.right_bottom_link {
+  position: absolute;
+
+  bottom: 0;
+  right: 2em;
 }

@@ -1,11 +1,2 @@
-PROJECT SHOW PAGE <br>
 
-<%= render partial: "project", locals: {project: @project} %>
-
-<%= render partial: "tasks/tasks_index_table", locals: {tasks: @project.tasks} %>
-
-<%= link_to 'Create new task', new_project_task_path(@project.id) %>
-
-<%= link_to 'Edit Project', edit_project_path(@project.id) %>
-
-<%= link_to "Delete", @project, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+    <%= render partial: "project", locals: {project: @project} %>

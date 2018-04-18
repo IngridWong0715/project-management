@@ -2,7 +2,6 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update]
   def new
     @team = Team.new
-    @team.projects.build
   end
 
   def create
@@ -32,11 +31,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :function, :description, user_ids: [],
-      projects_attributes:[
-        :name,
-        :description,
-        :due_date
-      ])
+    params.require(:team).permit(:name, :function, :description, user_ids: [])
   end
 end

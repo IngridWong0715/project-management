@@ -1,19 +1,17 @@
-t<table class="table table-hover">
+<table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Task Name</th>
       <th scope="col">Description</th>
-      <th scope="col">Link</th>
+      <th scope="col">Deadline</th>
     </tr>
   </thead>
   <tbody>
     <% tasks.each do |task| %>
     <tr>
-      <th scope="row"></th>
-      <td><%=task.name%></td>
+      <td><%= link_to task.name, project_task_path(task.project.id, task.id)%></td>
       <td><%=task.description%></td>
-      <td><%= link_to "view task", project_task_path(task.project.id, task.id)%></td>
+      <td><%=formatted_datetime(task.due_date)%></td>
     </tr>
     <% end %>
 

@@ -2,7 +2,7 @@ class Project < ApplicationRecord
   belongs_to :user
   belongs_to :team, optional: true # for now, a Project EITHER belongs to a user, OR to a team
   has_many :tasks
-  accepts_nested_attributes_for :tasks
+
 
   validates :name, presence: true
 

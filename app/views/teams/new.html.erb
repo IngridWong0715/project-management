@@ -8,16 +8,6 @@ New team:
   <%= f.label :description %>
   <%= f.text_area :description %>
   <%= f.collection_check_boxes :user_ids, User.all, :id, :name %>
-  <div class="field">
-    Add a project:
-    <%= f.fields_for :projects do |project_builder| %>
-      <%= project_builder.label :name%>
-      <%= project_builder.text_field :name%>
-      <%= project_builder.label :description%>
-      <%= project_builder.text_field :description%>
-      <%= project_builder.label :due_date%>
-      <%= project_builder.datetime_field :due_date%>
-    <% end %>
-  </div>
+
   <%= f.submit %>
 <% end %>

@@ -4,7 +4,7 @@ class Team < ApplicationRecord
 
   has_many :projects
   has_many :tasks, through: :projects
-  accepts_nested_attributes_for :projects
+
 
   validates :name, presence: true
 

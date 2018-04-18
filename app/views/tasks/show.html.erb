@@ -1,15 +1,29 @@
-TASK DETAILS
+<div class="container">
 
-<%= @task.name %>
+  <div class="row">
 
-<%= @task.description %>
+     <div class="col-lg-8 offset-lg-2 col-md-6 offset-md-2  formatted">
 
-<%= @task.due_date %>
+       <h3 class="text-center"><%= @task.name %> </h3>
+       <div class="row">
 
-<%= link_to "Edit Task", edit_project_task_path(@task.project.id, @task.id) %>
-<%= link_to "Delete Task", project_task_path(@task.project.id, @task.id), method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+         <div class="col-8 col-sm-6">
+           <%= @task.description %>
+         </div>
 
-Have a "add checklist"
-Have an "add attachment"
+         <div class="col-8 col-sm-6">
+            Due: <%= @task.due_date %><br>
+            Create a checklist<br>
+            Add attachment <br>
 
-Have a "complete task" button
+            Have a "complete task" button <br>
+            <div class="right_bottom_link">
+              <%= link_to("Edit Task", edit_project_task_path(@task.project.id, @task.id)) %><br>
+              <%= link_to "Delete Task", project_task_path(@task.project.id, @task.id), method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
