@@ -1,20 +1,21 @@
 <div class="container formatted">
     <h3 class="text-center"><%= @project.name %> </h3>
   <div class="row">
-    <div class="col">
- Project Description: <%= project.description %><br>
+    <div class="col description_box">
+    <text_area>  Project Description: <%= project.description %></text_area>
     </div>
     <div class="col">
       People working on this project:  <%= project.team ? project.team.name : "Just me." %><br>
-      <%= formatted_datetime(project.due_date) %>
-      <%= link_to 'Edit Project', edit_project_path(@project.id) %>
-      <%= link_to "Delete", @project, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+      <%= formatted_datetime(project.due_date) %><br>
+      <div class="right_bottom_link">
+        <%= link_to 'Edit Project', edit_project_path(@project.id) %><br>
+        <%= link_to "Delete", @project, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+      </div>
     </div>
   </div>
 
-
   <div class="row">
-    <div class="col">
+    <div class="col tasks_display_box">
 
       <%= render partial: "tasks/tasks_index_table", locals: {tasks: @project.tasks} %>
         <%= link_to 'Create new task', new_project_task_path(@project.id) %>

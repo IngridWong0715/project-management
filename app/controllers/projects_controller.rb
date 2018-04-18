@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
   def create
     project = current_user.projects.create(project_params)
     if project.save
-      flash[:notice] = "project created successfully"
       redirect_to project_path(project)
     else
       flash[:warning] = "project not created"
@@ -28,7 +27,6 @@ class ProjectsController < ApplicationController
 
   def update
       if @project.update(project_params)
-        flash[:notice] = "project edited successfully"
         redirect_to project_path(@project.id)
       else
         flash[:notice] = "project not edited"
@@ -38,7 +36,6 @@ class ProjectsController < ApplicationController
 
   def destroy
 
-    flash[:notice] = "Project deleted"
     @project.destroy
 
     redirect_to root_path

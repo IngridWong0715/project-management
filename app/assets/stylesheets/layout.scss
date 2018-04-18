@@ -69,7 +69,27 @@ td {
 
 .right_bottom_link {
   position: absolute;
-
   bottom: 0;
   right: 2em;
+}
+
+.description_box {
+    border-radius: 25px;
+    border: 2px solid #FFF;
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    height: 150px;
+    overflow-y:scroll;
+}
+
+
+.tasks_display_box {
+    border-radius: 25px;
+    border: 2px solid #FFF;
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    height: 300px;
+    overflow-y:scroll;
 }

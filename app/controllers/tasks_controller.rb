@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-   def new 
+   def new
      @project = Project.find(params[:project_id])
      @task = @project.tasks.new
    end
@@ -17,7 +17,6 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      flash[:notice] = "task updated successfully"
       redirect_to project_task_path(@task.project.id, @task.id)
     else
       flash[:notice] = "unable to update task"
@@ -27,7 +26,6 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    flash[:notice] = "task deleted successfully"
     redirect_to project_path(@task.project.id)
   end
 
