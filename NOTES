@@ -8,10 +8,13 @@ Functionalities to build:
 
 ISSUES
 
-1. Can't create project without creating an associated task. Same with team without project
--> accepts_nested_attributes_for issue!!
+1. NESTED FORM ISSUES:
+  a) Can't create project without creating an associated task.
+  b) Can't create a team (even by creating an associated project -> due to a)?  )
+  error from rake db:reset ActiveRecord::RecordNotSaved: You cannot call create unless the parent is saved
 
-1. Fix line 23 in app/views/devise/shared/_links.html.erb
+
+2. Fix line 23 in app/views/devise/shared/_links.html.erb
  -> right now only allows facebook
 
 2. Work on log in form: not centered
@@ -28,6 +31,9 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form
   end
 
   5.Can I use f.select?
+
+4. Nav bar: teams
+  - if a user has more than x teams, should turn into a drop down
 
 
 

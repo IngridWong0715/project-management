@@ -1,15 +1,16 @@
+<div id="sidebar">
+  <%= render partial: "projects/projects_index_table", locals: {group_projects: @group_projects, individual_projects: @individual_projects} %>
+<%= link_to 'Create a new project', new_project_path %><br>
+</div>
+
+
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-4">
-       <%= render partial: "projects/projects_index_table", locals: {group_projects: @group_projects, individual_projects: @individual_projects} %>
-
-       <%= link_to 'Create a new project', new_project_path %><br>
-
-    </div>
-    <div class="col-sm-8">
-      Here are your teams.
-      <%= render partial: "teams/team", collection: current_user.teams %>
+    
+    <div class="col-md-2 offset-md-8">
+      Your teams:
+      <%= render partial: "teams/team", locals: {teams: current_user.teams} %>
         <br>
       <%= link_to "Create a new team", new_team_path %>
       <br><br>

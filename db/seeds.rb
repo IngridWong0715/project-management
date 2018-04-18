@@ -16,9 +16,11 @@ ida = User.create(name: "Ida", email:"ida@gmail.com", password:"idahosbond")
 
 team1 = Team.create(name: "team 1")
 team2 = Team.create(name: "team 2")
+team3 = Team.create(name: "team 3")
 
 team1.users << ingrid
 team2.users << ingrid
+team3.users << ingrid
 team1.users << victoria
 team1.users << karmun
 team2.users << tommy
