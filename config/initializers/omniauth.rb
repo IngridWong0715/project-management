@@ -1,5 +1,0 @@
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
-  scope: 'email, public_profile', display: 'popup'
-  #callback_url: 'https://localhost:3000/users/auth/facebook/callback'
-end
