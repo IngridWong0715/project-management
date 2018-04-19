@@ -7,7 +7,7 @@ New team:
   <%= f.text_field :function %>
   <%= f.label :description %>
   <%= f.text_area :description %>
-  <%= f.collection_check_boxes :user_ids, User.all, :id, :name %>
+  <%= f.collection_check_boxes :user_ids, User.all, :id, :first_name %>
 
   <%= f.submit %>
 <% end %>

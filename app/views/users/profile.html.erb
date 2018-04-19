@@ -1,0 +1,8 @@
+<%= current_user.first_name %>
+<%= current_user.last_name %>
+<%= current_user.email %>
+<%= current_user.birthday %>
+
+<img src="<%=current_user.image%>" alt="Profile Picture">
+
+  <%= link_to "Edit Profile", edit_user_registration_path %>
