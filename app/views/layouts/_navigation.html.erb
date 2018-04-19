@@ -1,7 +1,9 @@
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">ProjectManagement</a>
 
   <% if current_user %> <!-- signed in -->
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">ProjectManagement</a>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -37,12 +39,6 @@
       </ul>
       </div>
 
-  <% else %> <!-- not signed in -->
-
-      <ul class="navbar-nav ml-auto">
-          <a class="nav-link" href="#">About</a>
-         <%= link_to 'Login', new_user_session_path, class: "nav-link" %>
-      </ul>
-
-      <% end %>
   </nav>
+
+  <% end %>

@@ -17,15 +17,15 @@
 
     <body>
 
-      <div id="welcome_page">
-        <%= render 'layouts/navigation' %>
+
+        <%= render 'layouts/navigation' if user_signed_in? %>
     <% flash.each do |name, msg| -%>
             <%= content_tag :div, msg, class: name %>
     <% end -%>
 
         <%= yield %>
 
-      </div>
+      
 
   </body>
 
