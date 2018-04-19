@@ -1,10 +1,5 @@
 Functionalities to build:
 
-- Different layouts:https://github.com/plataformatec/devise/wiki/How-To:-Create-custom-layouts
-  - for signed in pages (done, but look more into if it's correct in application.html.erb)
-  - for sign in and sign up pages (TO IMPLEMENT! Want a blue nav bar)
-  - for welcome page (ditto with signed in pages)
-
 
 - Share tasks and projects with other users
   (right now can only do so through teams)
@@ -26,9 +21,6 @@ ISSUES
 
 2. Fix line 23 in app/views/devise/shared/_links.html.erb
  -> right now only allows facebook
-
-2. Work on log in form: not centered
-https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form
 
 3.FOR SEARCHING WITH DUE DATE:
   1. search dates are off by 1 day! so search results don't return edge cases
@@ -53,6 +45,11 @@ Things to review at end of project:
 
 
 1..Project.group_projects: WHY NESTED ARRAY? (Project.rb)
+
+2. Layouts for navigation:
+- Different layouts:https://github.com/plataformatec/devise/wiki/How-To:-Create-custom-layouts
+  - have a separate layout for welcome controller: ASK!! AM I LOADING BOOTSTRAP TWICE?!?!?
+
 
 2. Compare with this:
 https://learn.co/tracks/full-stack-web-development-v5/rails/crud-with-rails/resource-generator-routes

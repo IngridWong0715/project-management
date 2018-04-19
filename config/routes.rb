@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register' }
 
 
-
   authenticated :user do
     root 'users#show', as: :authenticated_root
   end

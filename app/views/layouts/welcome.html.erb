@@ -17,8 +17,21 @@
 
     <body>
 
+        <div id="welcome_page">
 
-    <%= render 'layouts/navigation/signed_in'%> <!-- CORRECT?!?!? -->
+          <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top" style="background-color: transparent;">
+
+          <a class="navbar-brand" href="/" style="color:white;"><h1>Logo</h1></a>
+
+
+
+            <ul class="navbar-nav ml-auto">
+              <a class="nav-link" href="#" style="color:white;" >About</a>
+            </ul>
+
+            <!-- in the future, change to a toggle, like this: https://imentor.org/ -->
+
+        </nav>
 
 
     <% flash.each do |name, msg| -%>
@@ -27,9 +40,5 @@
 
         <%= yield %>
 
-
-
   </body>
-
-
 </html>

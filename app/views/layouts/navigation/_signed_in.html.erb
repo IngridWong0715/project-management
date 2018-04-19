@@ -1,42 +1,44 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: black;">
   <a class="navbar-brand" href="/">ProjectManagement</a>
-      <% if user_signed_in? %>
+
+    <% if user_signed_in? %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <%= link_to "Home", root_path, class:"nav-link" %>
           </li>
 
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Profile
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+              </div>
+            </li>
 
-            <div class="dropdown-divider"></div>
-            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "dropdown-item") %>
-          </div>
-        </li>
-
-
-        <%= render "layouts/teams" %>
-
+            <%= render "layouts/teams" %>
         </ul>
 
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <%= render partial: "layouts/search_modal" %>
           </li>
+        </ul>
+      </div>
+    <% else %> <!-- user not logged in: sign in or sign up page -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class:"nav-link" %>
+          </li>
 
         </ul>
-        </div>
-
-        <% else %>
-        MEHHH
-
-        <% end %>
+      </div>
+    <% end %>
 
 
   </nav>
