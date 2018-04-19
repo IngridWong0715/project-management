@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col tasks_display_box">
 
-        <%= render partial: "projects/team_projects_show", locals: {projects: @team.projects} %>
+        <%= render partial: "teams/team_projects_index", locals: {projects: @team.projects} %>
           <%= link_to 'Create new project', new_project_path %>
       </div>
 

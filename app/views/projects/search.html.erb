@@ -2,5 +2,12 @@
   Your search has no result
 <% else %>
   Your search results are: <br>
-  <%= render partial: 'project', collection: @projects %>
+  <<div class="list-group" >
+
+    <% @projects.each do |project| %>
+      <%= link_to(project.name, project_path(project), class:"list-group-item list-group-item-action") %>
+    <%end %>
+
+  </div>
+
 <% end %>

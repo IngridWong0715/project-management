@@ -1,0 +1,10 @@
+<div class="list-group " >
+  Individual Projects
+  <% individual_projects.each do |project| %>
+    <%= link_to(project.name, project_path(project), class:"list-group-item list-group-item-action list-color") %>
+  <%end %>
+  Group Projects
+  <% group_projects.each do |project| %>
+    <%= link_to(project.name, project_path(project), class:"list-group-item list-group-item-action list-color") %>
+  <%end %>
+</div>
