@@ -16,12 +16,12 @@
   </head>
 
     <body>
-      <%= render 'layouts/navigation' %>
-      <div class="bg">
 
+      <div id="welcome_page">
+        <%= render 'layouts/navigation' %>
     <% flash.each do |name, msg| -%>
             <%= content_tag :div, msg, class: name %>
-    <% end -%> 
+    <% end -%>
 
         <%= yield %>
 

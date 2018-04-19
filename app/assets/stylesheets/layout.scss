@@ -2,20 +2,35 @@ body, html {
     height: 100%;
 }
 
-.bg {
+#welcome_page {
+  /* The image used */
+  background-image: url("collaborate.jpg");
 
-    /* The image used */
-    background-image: url("lion.jpg");
+    /* Full height */
+  height: 100%;
 
-      /* Full height */
-    height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+.col-centered {
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+  top: 200px;
+  color: white;
+   text-align: center;
+}
+
+#headline {
+  top: 250px;
 
 }
+
+
 
 // from jsfiddle: http://jsfiddle.net/kbLak/
  #sidebar {
