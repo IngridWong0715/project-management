@@ -5,7 +5,9 @@ Functionalities to build:
 
 - Add scroll to list group in home view
 
-- override bootstrap container 
+- override bootstrap container
+
+- do something to the flash messages in layouts/application
 -----
 
 ISSUES

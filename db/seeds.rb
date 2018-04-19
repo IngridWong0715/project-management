@@ -1,8 +1,8 @@
-ingrid = User.create!(name:"Ingrid", email: "ingrid830715@gmail.com", password: "ingridWONG830715")
-victoria = User.create!(name: "Victoria", email: "victoria@gmail.com", password: "victoria")
-karmun = User.create!(name: "Karmun", email: "karmun@gmail.com", password:"karmun")
-tommy = User.create!(name: "Tommy", email: "tommy@gmail.com", password: "tommytung")
-ida = User.create!(name: "Ida", email:"ida@gmail.com", password:"idahosbond")
+ingrid = User.create!(first_name:"Ingrid", email: "ingrid830715@gmail.com", password: "ingridWONG830715")
+victoria = User.create!(first_name: "Victoria", email: "victoria@gmail.com", password: "victoria")
+karmun = User.create!(first_name: "Karmun", email: "karmun@gmail.com", password:"karmun")
+tommy = User.create!(first_name: "Tommy", email: "tommy@gmail.com", password: "tommytung")
+ida = User.create!(first_name: "Ida", email:"ida@gmail.com", password:"idahosbond")
 
 team1 = Team.create!(name: "team 1")
 team2 = Team.create!(name: "team 2")
