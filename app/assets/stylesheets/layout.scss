@@ -18,19 +18,34 @@ body, html {
 
 .col-centered {
   float: none;
-  margin-right: auto;
-  margin-left: auto;
-  top: 200px;
+
+}
+
+
+.center {
   color: white;
    text-align: center;
+    width: 700px;
+    height: 300px;
+    background-color: transparent;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
 }
 
-#headline {
-  top: 250px;
 
+//remove link button color for just welcome page
+.not-active {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
 }
-
-
 
 // from jsfiddle: http://jsfiddle.net/kbLak/
  #sidebar {
