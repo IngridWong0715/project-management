@@ -1,4 +1,12 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2><%= resource_name.to_s.humanize %></h2>
+
+<%= current_user.first_name %>
+<%= current_user.last_name %>
+<%= current_user.email %>
+<%= current_user.birthday %>
+
+<img src="<%=current_user.image%>" alt="Profile Picture">
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>

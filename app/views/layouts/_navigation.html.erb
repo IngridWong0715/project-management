@@ -7,22 +7,32 @@
         <li class="nav-item">
           <%= link_to "Home", root_path, class:"nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Profile", profile_path, class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "nav-link") %>
-        </li>
+
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+
+          <div class="dropdown-divider"></div>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+        </div>
+      </li>
 
 
-        <li class="nav-item">
-          <%= render partial: "layouts/search_modal" %>
-        </li>
+      <%= render "layouts/teams" %>
+
+
+
+
+
       </ul>
 
       <ul class="navbar-nav ml-auto">
-        <%= render partial: "layouts/teams" if current_user.teams%>
-        <%= link_to("New team", new_team_path,class: "nav-link") %>
+        <li class="nav-item">
+          <%= render partial: "layouts/search_modal" %>
+        </li>
 
       </ul>
       </div>
