@@ -1,5 +1,11 @@
 Functionalities to build:
 
+- Different layouts:https://github.com/plataformatec/devise/wiki/How-To:-Create-custom-layouts
+  - for signed in pages (done, but look more into if it's correct in application.html.erb)
+  - for sign in and sign up pages (TO IMPLEMENT! Want a blue nav bar)
+  - for welcome page (ditto with signed in pages)
+
+
 - Share tasks and projects with other users
   (right now can only do so through teams)
 
