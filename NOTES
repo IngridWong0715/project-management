@@ -37,7 +37,7 @@ ISSUES
 4. Nav bar: teams
   - if a user has more than x teams, should turn into a drop down
 
-
+5. Change navbar color to blue: customize https://getbootstrap.com/docs/4.1/getting-started/theming/
 
 -----
 

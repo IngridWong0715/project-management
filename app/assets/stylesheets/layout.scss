@@ -2,6 +2,10 @@ body, html {
     height: 100%;
 }
 
+body {
+  color: #1e2d66;
+}
+
 #welcome_page {
   /* The image used */
   background-image: url("collaborate.jpg");
@@ -21,6 +25,8 @@ body, html {
 
 }
 
+
+
 .sign_up_box {
   border-radius: 25px;
   border: 2px solid #FFF;
@@ -36,12 +42,9 @@ body, html {
     bottom: 0;
     left: 0;
     right: 0;
-
     margin: auto;
     // color: white;
-
 }
-
 
 
 .center {
@@ -86,52 +89,23 @@ body, html {
 //   color: inherit;
 // }
 
-// from jsfiddle: http://jsfiddle.net/kbLak/
- #sidebar {
-    padding: 0;
-    margin: 0.5;
-    font-size: 16px;
-    width: 210px;
-    position: absolute;
-    top: 55px;
-    bottom: 0;
-    left: 0;
-    border-right: 1px solid rgba(228,133,149,0);
-    background: transparent;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    z-index: 20;
-    color: black;
-    box-shadow: 0 0 0 rgba(0,0,0,.5);
 
-}
-
-
-table {
-  border: 1px solid #D8BFD8;
-}
 
 th {
-    background-color: #D8BFD8;
+    background-color: #1e2d66;
     color: white;
     opacity: 0.9;
 }
 
 td {
-    background-color: #f8f9fa;
-    color: white;
+    color: black;
     opacity: 0.9;
 }
 
 .formatted {
   top: 100px;
-  background-color: #D8BFD8;
-  color: white;
+  background-color: #FFF;
+  color: #1e2d66;
   opacity: 0.9;
 }
 
