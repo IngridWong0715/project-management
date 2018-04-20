@@ -7,6 +7,7 @@
           <th scope="col">Project Name</th>
           <th scope="col">Member(s)</th>
           <th scope="col">Deadline</th>
+          <th scope="col">Complete</th>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +16,7 @@
           <td><%= link_to project.name, project_path(project)%></td>
           <td><%= project.user.first_name %></td>
           <td><%=formatted_datetime(project.due_date)%></td>
+          <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
         </tr>
         <% end %>
 
@@ -26,8 +28,9 @@
     <thead>
       <tr>
         <th scope="col">Project Name</th>
-        <th scope="col">Members</th>
+        <th scope="col">Member(s)</th>
         <th scope="col">Deadline</th>
+          <th scope="col">Complete</th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +39,7 @@
         <td><%= link_to project.name, project_path(project)%></td>
         <td><%= render partial: "user", collection: project.team.users %></td>
         <td><%=formatted_datetime(project.due_date)%></td>
+        <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
       </tr>
       <% end %>
 

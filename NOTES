@@ -9,6 +9,8 @@ Functionalities to build:
 - override bootstrap container
 
 - do something to the flash messages in layouts/application
+
+- Use JS to build complete checkbox for projects and tasks AND add a "completed" page to show these AND remove these completed projects/tasks from show pages 
 -----
 
 ISSUES
