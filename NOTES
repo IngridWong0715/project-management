@@ -10,7 +10,7 @@ Functionalities to build:
 
 - do something to the flash messages in layouts/application
 
-- Use JS to build complete checkbox for projects and tasks AND add a "completed" page to show these AND remove these completed projects/tasks from show pages 
+- Use JS to build complete checkbox for projects and tasks AND add a "completed" page to show these AND remove these completed projects/tasks from show pages
 -----
 
 ISSUES
@@ -25,7 +25,7 @@ ISSUES
  -> right now only allows facebook
 
 3.FOR SEARCHING WITH DUE DATE:
-  1. search dates are off by 1 day! so search results don't return edge cases
+  1. search dates are off by 1 day! so search results don't return edge cases: due_today project is "PAST DUE" when it shouldn't be
   3.Search controller and routes. Is this restful?
 
   4. Understand the data: part:
