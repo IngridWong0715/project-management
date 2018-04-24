@@ -1,0 +1,23 @@
+
+<%= form_for team, html: {:class => 'form-group'} do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field(:name, class:"form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label :function %>
+    <%= f.text_field(:function, class:"form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area(:description, class:"form-control") %>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <%= f.label :members %><br>
+      <%= f.collection_check_boxes(:user_ids, User.all, :id, :first_name, class:"form-check-label") %>
+    </div>
+  </div>
+
+  <%= f.submit %>
+<% end %>
