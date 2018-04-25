@@ -43,7 +43,7 @@ ISSUES
 
 -----
 
-Things to review at end of project:
+Things to review/refactor at end of project:
 
 
 1..Project.group_projects: WHY NESTED ARRAY? (Project.rb)
@@ -53,6 +53,12 @@ Things to review at end of project:
   - have a separate layout for welcome controller: ASK!! AM I LOADING BOOTSTRAP TWICE?!?!?
 
 
-2. Compare with this:
+3. Compare with this:
 https://learn.co/tracks/full-stack-web-development-v5/rails/crud-with-rails/resource-generator-routes
+
+4. New/Edit forms:
+  4.1 using .persisted?
+    -> too much logic in views?
+  4.2 styling with form_center for now
+    -> not bootstrapped 
 -----

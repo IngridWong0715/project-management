@@ -1,16 +1,18 @@
-
-<%= form_for [project, task], html: {:class => 'form-group'} do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field(:name, class:"form-control") %>
-  </div>
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area(:description, class:"form-control") %>
-  </div>
-  <div class="form-group">
-    <%= f.datetime_field(:due_date, class:"form-control") %>
-  </div>
-  <%= f.hidden_field :project_id, value: project.id %>
-  <%= f.submit %>
-<% end %>
+<div class="form_center">
+   <p class="text-center"><h2><%= task.persisted? ? "Edit Task" : "New Task"%></h2></p>
+  <%= form_for [project, task], html: {:class => 'form-group'} do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field(:name, class:"form-control") %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area(:description, class:"form-control") %>
+    </div>
+    <div class="form-group">
+      <%= f.datetime_field(:due_date, class:"form-control") %>
+    </div>
+    <%= f.hidden_field :project_id, value: project.id %>
+    <%= f.submit %>
+  <% end %>
+</div>
