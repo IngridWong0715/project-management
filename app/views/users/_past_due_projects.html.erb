@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#pastDueModal">
- <strong style="color:red;">PAST DUE</strong>
+ <strong style="color:red;">VIEW PAST DUE PROJECTS</strong>
 
 </button>
 
@@ -15,7 +15,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= render partial: "projects_table", locals: {projects: @past_due_projects} %>
+        <%= render partial: "home_projects_index_table", locals: {projects: @past_due_projects} %>
       </div>
       <div class="modal-footer">
          add footer?

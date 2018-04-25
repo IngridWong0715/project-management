@@ -3,28 +3,17 @@
 <thead>
   <tr>
 
-    <% if team_projects?(projects) %>
-      <th scope="col"> Group Projects</th>
-    <% else %>
-      <th scope="col">Individual Projects</th>
-    <% end %>
-
-    <th scope="col">Member(s)</th>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
     <th scope="col">Deadline</th>
-      <th scope="col">Complete</th>
+    <th scope="col">Complete</th>
   </tr>
 </thead>
 <tbody>
   <% projects.each do |project| %>
   <tr>
     <td><%= link_to project.name, project_path(project)%></td>
-    <td>
-      <% if team_projects?(projects) %>
-        <%= render partial: "user", collection: project.team.users %>
-      <% else %>
-        <%= project.user.first_name %>
-      <% end %>
-    </td>
+    <td><%=project.name%></td>
     <td><%=formatted_datetime(project.due_date)%></td>
     <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
   </tr>

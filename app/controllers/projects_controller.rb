@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    
     project = current_user.projects.create(project_params)
     if project.save
       redirect_to project_path(project)

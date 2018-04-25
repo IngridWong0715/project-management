@@ -1,12 +1,14 @@
-<% if @projects.empty? %>
-  Your search has no result
-<% else %>
-  Your search results are: <br>
-  <<div class="list-group" >
+<div class="container">
+  <% if @projects.empty? %>
+    Your search has no result
+  <% else %>
+    Your search results are: <br>
+    <div class="list-group" >
 
-    <% @projects.each do |project| %>
-      <%= link_to(project.name, project_path(project), class:"list-group-item list-group-item-action") %>
-    <%end %>
+      <% @projects.each do |project| %>
+        <%= link_to(project.name, project_path(project), class:"list-group-item list-group-item-action") %>
+      <%end %>
 
-  </div>
-<% end %>
+    </div>
+  <% end %>
+</div>

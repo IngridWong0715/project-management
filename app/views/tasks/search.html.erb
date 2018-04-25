@@ -1,6 +1,10 @@
-<% if @tasks.empty? %>
-  Your search has no result
-<% else %>
-  Your search results are: <br>
-  <%= render partial: 'tasks/tasks_index_table', locals: {tasks: @tasks } %>
-<% end %>
+<div class="container">
+  <% if @tasks.empty? %>
+    Your search has no result
+  <% else %>
+    Your search results are: <br>
+    <% @tasks.each do |task| %>
+      <%= link_to(task.name, project_task_path(task.project, task), class:"list-group-item list-group-item-action") %>
+    <%end %>
+  <% end %>
+</div>
