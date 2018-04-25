@@ -60,5 +60,8 @@ https://learn.co/tracks/full-stack-web-development-v5/rails/crud-with-rails/reso
   4.1 using .persisted?
     -> too much logic in views?
   4.2 styling with form_center for now
-    -> not bootstrapped 
+    -> not bootstrapped
+
+5. users/projects_table: team_projects?(projects) helper:
+  -> is this the best way to do it?
 -----

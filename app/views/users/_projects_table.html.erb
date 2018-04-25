@@ -2,7 +2,13 @@
 <table class="table table-hover">
 <thead>
   <tr>
-    <th scope="col">Project Name</th>
+
+    <% if team_projects?(projects) %>
+      <th scope="col"> Group Projects</th>
+    <% else %>
+      <th scope="col">Individual Projects</th>
+    <% end %>
+
     <th scope="col">Member(s)</th>
     <th scope="col">Deadline</th>
       <th scope="col">Complete</th>
@@ -13,7 +19,7 @@
   <tr>
     <td><%= link_to project.name, project_path(project)%></td>
     <td>
-      <% if project.team %>
+      <% if team_projects?(projects) %>
         <%= render partial: "user", collection: project.team.users %>
       <% else %>
         <%= project.user.first_name %>
