@@ -15,27 +15,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Project Name</th>
-              <th scope="col">Member(s)</th>
-              <th scope="col">Deadline</th>
-              <th scope="col">Complete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% past_due_projects.each do |project| %>
-            <tr>
-              <td><%= link_to project.name, project_path(project)%></td>
-              <td><%= project.user.first_name %></td>
-              <td><%=formatted_datetime(project.due_date)%></td>
-              <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
-            </tr>
-            <% end %>
-
-          </tbody>
-        </table>
+        <%= render partial: "projects_table", locals: {projects: @past_due_projects} %>
       </div>
       <div class="modal-footer">
          add footer?

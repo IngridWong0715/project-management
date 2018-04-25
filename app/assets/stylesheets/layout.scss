@@ -121,11 +121,23 @@ td {
     opacity: 0.9;
 }
 
-.formatted {
-  top: 100px;
-  background-color: #FFF;
+.formatted_show {
   color: #1e2d66;
   opacity: 0.9;
+   text-align: center;
+    width: 500px;
+    height: 500px;
+    background-color: transparent;
+
+    padding: 20px;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
 }
 
 .right_bottom_link {

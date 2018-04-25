@@ -1,0 +1,9 @@
+<div class="container">
+  <% if !@past_due_projects.empty? %>
+    <%= render partial: "past_due_projects", locals: {past_due_projects: @past_due_projects} %>
+  <% end %>
+  Individual
+  <%= render partial: "projects_table", locals: {projects: @individual_projects} %>
+  Group
+  <%= render partial: "projects_table", locals: {projects: @group_projects} %>
+</div>

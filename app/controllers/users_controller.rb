@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  def show
+  def home
 
     @individual_projects = Project.active_individual_projects(current_user)
     @group_projects = Project.active_group_projects(current_user)

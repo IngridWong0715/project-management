@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
 
   authenticated :user do
-    root 'users#show', as: :authenticated_root
+    root 'users#home', as: :authenticated_root
   end
 
   root to: 'welcome#welcome'
