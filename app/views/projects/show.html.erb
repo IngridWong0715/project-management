@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col tasks_display_box">
 
-      <%= render partial: "tasks/tasks_index_table", locals: {tasks: @project.tasks} %>
+      <%= render partial: "project_tasks_index", locals: {tasks: @project.tasks} %>
         <%= link_to 'Create new task', new_project_task_path(@project) %>
     </div>
 
