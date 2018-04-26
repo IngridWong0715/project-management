@@ -7,17 +7,34 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    if params[:team_id]
+      @team = Team.find(params[:team_id])
+      @team.projects << @project
+    end
+
+
+
   end
 
   def create
-    
-    project = current_user.projects.create(project_params)
-    if project.save
-      redirect_to project_path(project)
-    else
-      flash[:warning] = "project not created"
-      redirect_to root_path
-    end
+
+
+      project = current_user.projects.create(project_params)
+
+
+      if project.save
+        if project.team
+          redirect_to team_project_path(project.team, project)
+        else
+          redirect_to project_path(project)
+        end
+      else
+        flash[:warning] = "project not created"
+        redirect_to root_path
+      end
+
+
+
   end
 
   def show

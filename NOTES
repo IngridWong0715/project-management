@@ -15,6 +15,9 @@ Functionalities to build:
 
 ISSUES
 
+1. LOOK AT NESTED ROUTE FOR TEAM/PROJECT:
+  - all the crud actions
+
 1. NESTED FORM ISSUES:
   a) Can't create project without creating an associated task.
   b) Can't create a team (even by creating an associated project -> due to a)?  )

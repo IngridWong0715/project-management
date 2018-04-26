@@ -22,7 +22,7 @@
 
 
         <%= render partial: "team_projects_index_table", locals: {projects: @team.projects} %>
-        <%= link_to 'Create new project', new_project_path %>
+        <%= link_to 'Create new project', new_team_project_path(@team) %>
 
       </div>
 

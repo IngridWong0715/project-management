@@ -8,7 +8,13 @@
       People working on this project:  <%= @project.team ? @project.team.name : "Just me." %><br>
       <%= formatted_datetime(@project.due_date) %><br>
       <div class="right_bottom_link">
-        <%= link_to 'Edit Project', edit_project_path(@project) %><br>
+        <% if @project.team %>
+          <%= link_to 'Edit Project', edit_team_project_path(@project.team, @project) %><br>
+        <% else %>
+          <%= link_to 'Edit Project', edit_project_path(@project) %><br>
+        <% end %>
+
+
         <%= link_to "Delete", @project, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
       </div>
 
