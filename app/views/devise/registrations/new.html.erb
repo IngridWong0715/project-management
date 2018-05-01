@@ -30,6 +30,9 @@
           </div>
         <% end %>
 
+        <div class="field">
+            <%= link_to "Register with Facebook", user_facebook_omniauth_authorize_path %>
+         </div>
 
         Already Registered?<br>
       <%= render "devise/shared/links" %>
