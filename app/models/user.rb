@@ -34,7 +34,7 @@ class User < ApplicationRecord
   end
 end
 
-def self.all_but_current_user(current_user)
+def self.all_but_current_user(currentuser)
   where.not(id: current_user.id)
 end
 

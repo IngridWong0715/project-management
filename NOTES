@@ -79,3 +79,16 @@ https://learn.co/tracks/full-stack-web-development-v5/rails/crud-with-rails/reso
 5. users/projects_table: team_projects?(projects) helper:
   -> is this the best way to do it?
 -----
+
+FIXED FB LOGIN :
+in views/devise/share/_links.html
+  REPLACE:
+
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= link_to "Log in with #{OmniAuth::Utils.camelize(provider)}", user_facebook_omniauth_authorize_path(resource_name, provider) %><br />
+      <% end -%>
+    <% end -%>
+
+  WITH:
+    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
