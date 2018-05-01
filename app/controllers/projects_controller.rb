@@ -11,16 +11,11 @@ class ProjectsController < ApplicationController
       @team = Team.find(params[:team_id])
       @team.projects << @project
     end
-
-
-
   end
 
   def create
 
-
       project = current_user.projects.create(project_params)
-
 
       if project.save
         if project.team
@@ -32,8 +27,6 @@ class ProjectsController < ApplicationController
         flash[:warning] = "project not created"
         redirect_to root_path
       end
-
-
 
   end
 
@@ -55,7 +48,6 @@ class ProjectsController < ApplicationController
   def destroy
 
     @project.destroy
-
     redirect_to root_path
   end
 

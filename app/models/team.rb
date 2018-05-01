@@ -8,4 +8,8 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
 
+  def self.has_fewer_than(number)
+    
+  end
+
 end

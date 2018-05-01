@@ -26,12 +26,16 @@ class User < ApplicationRecord
     user.first_name = auth.info.first_name
     user.last_name = auth.info.last_name
     user.image = auth.info.image
-  
+
     user.birthday = auth.extra.raw_info.birthday
     # If you are using confirmable and the provider(s) you use validate emails,
     # uncomment the line below to skip the confirmation emails.
     # user.skip_confirmation!
   end
+end
+
+def self.all_but_current_user(current_user)
+  where.not(id: current_user.id)
 end
 
 

@@ -4,8 +4,11 @@
     <%= render partial: "past_due_projects", locals: {past_due_projects: @past_due_projects} %>
   <% end %>
 
-  <%= render partial: "home_projects_index_table", locals: {projects: @individual_projects} %>
-
-  <%= render partial: "home_projects_index_table", locals: {projects: @group_projects} %>
+  <% if !@individual_projects.empty? %>
+    <%= render partial: "home_projects_index_table", locals: {projects: @individual_projects} %>
+  <% end %>
+  <% if !@group_projects.empty? %>
+    <%= render partial: "home_projects_index_table", locals: {projects: @group_projects} %>
+  <% end %>
 
 </div>

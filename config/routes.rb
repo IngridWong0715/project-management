@@ -8,8 +8,6 @@ Rails.application.routes.draw do
     root 'users#home', as: :authenticated_root
   end
 
-
-
   root to: 'welcome#welcome'
 
   get '/profile', to: 'users#profile'

@@ -1,11 +1,12 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update]
+  before_action :set_team, only: [:show, :edit, :update, :destroy]
   def new
     @team = Team.new
+    @other_users = User.all_but_current_user(current_user)
   end
 
   def create
-    team = Team.new(team_params)
+    team = current_user.teams.create(team_params)
     if team.save
       redirect_to team_path(team)
     else
@@ -15,6 +16,25 @@ class TeamsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+    @other_users = User.all_but_current_user(current_user)
+  end
+
+  def update
+    if @team.update(team_params)
+      @team.users<<current_user
+      redirect_to team_path(@team)
+    else
+      flash[:notice] = "unable to update team"
+      render "teams/form"
+    end
+  end
+
+  def destroy
+    @team.destroy
+    redirect_to root_path
   end
 
   private
@@ -32,4 +52,5 @@ class TeamsController < ApplicationController
   def team_params
     params.require(:team).permit(:name, :function, :description, user_ids: [])
   end
+
 end

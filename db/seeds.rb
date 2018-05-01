@@ -3,6 +3,7 @@ victoria = User.create!(first_name: "Victoria", email: "victoria@gmail.com", pas
 karmun = User.create!(first_name: "Karmun", email: "karmun@gmail.com", password:"karmun")
 tommy = User.create!(first_name: "Tommy", email: "tommy@gmail.com", password: "tommytung")
 ida = User.create!(first_name: "Ida", email:"ida@gmail.com", password:"idahosbond")
+testUser = User.create!(first_name: "TEST USER", email:"test@gmail.com", password:"123456")
 
 team1 = Team.create!(name: "team 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices ut lectus a tempor. Sed id libero fringilla, lacinia turpis at, vulputate est.")
 team2 = Team.create!(name: "team 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices ut lectus a tempor. Sed id libero fringilla, lacinia turpis at, vulputate est.")
@@ -48,4 +49,4 @@ ingrid_project.tasks.create!(name:"task1", due_date: (DateTime.now + 1.week).to_
 ingrid_project.tasks.create!(name:"task2", due_date: (DateTime.now + 1.week).to_s, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices ut lectus a tempor. Sed id libero fringilla, lacinia turpis at, vulputate est.")
 ingrid_project.tasks.create!(name:"task3", due_date: (DateTime.now + 1.week).to_s, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices ut lectus a tempor. Sed id libero fringilla, lacinia turpis at, vulputate est.")
 ingrid_project.tasks.create!(name:"task4", due_date: (DateTime.now + 1.week).to_s, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices ut lectus a tempor. Sed id libero fringilla, lacinia turpis at, vulputate est.")
-ingrid_project.tasks.create!(name:"task5", due_date: (DateTime.now + 1.week).to_s, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices ut lectus a tempor. Sed id libero fringilla, lacinia turpis at, vulputate est.")
+ingrid_project.tasks.create!(name:"task5", due_date: (DateTime.now + 1.week).to_s)

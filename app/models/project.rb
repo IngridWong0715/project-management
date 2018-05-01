@@ -41,9 +41,6 @@ class Project < ApplicationRecord
   end
 
 
-
-
-
   def self.all_past_due_projects(user)
     all_user_projects(user).select do |project|
       project.due_date < DateTime.now
@@ -56,7 +53,6 @@ class Project < ApplicationRecord
       project.name == name
     end
   end
-
 
 
   def self.due_in(user, days)
