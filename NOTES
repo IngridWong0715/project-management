@@ -1,7 +1,7 @@
-Project review:
+Project review issues(01/05/2018)
 1. Readme: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
-2. Create new team
-3. devise log in
+2. Create new team(working, but not satisfactory; see Issue 1)
+3. devise log in/registration (done, see bottom page)
 ------
 
 Functionalities to build:
@@ -26,10 +26,10 @@ ISSUES
     - right now, in controller:
       - update: @team.users<<current_user  (line 28 in team_controller; CHANGEEE!!!???)
 
-1. LOOK AT NESTED ROUTE FOR TEAM/PROJECT:
+. LOOK AT NESTED ROUTE FOR TEAM/PROJECT:
   - all the crud actions
 
-1. NESTED FORM ISSUES:
+. NESTED FORM ISSUES:
   a) Can't create project without creating an associated task.
   b) Can't create a team (even by creating an associated project -> due to a)?  )
   error from rake db:reset ActiveRecord::RecordNotSaved: You cannot call create unless the parent is saved
