@@ -13,20 +13,15 @@ $(function(){
 
         $.get(this.href, function(data) {
 
-          var projectsContext = []
-          data.forEach(function(project){
-            projectsContext.push({team_id: teamId, id: project["id"], name: project["name"], description: project["description"]})
-          });
-
           var source   = document.getElementById("projects-table-template").innerHTML;
           var template = Handlebars.compile(source);
 
-          var html = template(projectsContext);
+          var html = template(data);
           $("div.projects").append(html);
         });
         this.innerText="Hide Projects"
 
-      } // end else
+      } 
     });
 })
 
