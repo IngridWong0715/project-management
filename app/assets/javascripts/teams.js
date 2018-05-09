@@ -21,7 +21,7 @@ $(function(){
         });
         this.innerText="Hide Projects"
 
-      } 
+      }
     });
 })
 

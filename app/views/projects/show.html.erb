@@ -22,10 +22,44 @@
 
   <div class="row">
     <div class="col tasks_display_box">
+      <a href="/projects/<%=@project.id%>/tasks" class="view-tasks">View Tasks</a>
+      <div class="tasks">
 
-      <%= render partial: "project_tasks_index", locals: {tasks: @project.tasks} %>
+      </div>
+
+      <%#= render partial: "project_tasks_index", locals: {tasks: @project.tasks} %>
         <%= link_to 'Create new task', new_project_task_path(@project) %>
     </div>
 
   </div>
 </div>
+
+
+<script id="tasks-table-template" type="text/x-handlebars-template">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Task Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Complete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each this}}
+        {{>taskPartial}}
+      {{/each}}
+    </tbody>
+  </table>
+
+</script>
+
+<script id="task-partial-template" type="text/x-handlebars-template">
+  <tr>
+    <td><a href="/projects/{{project_id}}/tasks/{{id}}">{{name}}</a></td>
+    <td>{{description}}</td>
+    <td><{{due_date}})%></td>
+    <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
+  </tr>
+
+</script>
