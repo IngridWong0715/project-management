@@ -15,5 +15,3 @@
 //= require activestorage
 //= require turbolinks
 //= require handlebars-v4.0.11
-//= require teams
-//=require projects
