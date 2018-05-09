@@ -1,19 +1,21 @@
 $(function(){
 
   $("a.view_projects").on('click', function(e){
+    var source   = document.getElementById("project-template").innerHTML;
+    var template = Handlebars.compile(source);
+    var context = {title: "My New Post", body: "This is my first post!"};
+    var html    = template(context);
+
+    var teamId = $(this).data("id")
+    var tbody = $("div.projects tbody")
+
     if (this.innerText=="Hide Projects"){
-      alert("HIDINGG")
-      $("div.projects").empty();
-      this.innerText=="View Projects"
+
+      $("div.projects tbody").empty();
+      this.innerText = "View Projects"
 
     } else {
-      var source   = document.getElementById("project-template").innerHTML;
-      var template = Handlebars.compile(source);
-      var context = {title: "My New Post", body: "This is my first post!"};
-      var html    = template(context);
 
-      var teamId = $(this).data("id")
-      var tbody = $("div.projects tbody")
 
       $.get(this.href, function( data ) {
         data.forEach(function(project){
@@ -23,8 +25,8 @@ $(function(){
           tbody.append(html);
         })
       });
-      debugger;
-      this.innerText="Hide Projects"
+
+      this.innerText = "Hide Projects"
     }
     e.preventDefault();
   })
