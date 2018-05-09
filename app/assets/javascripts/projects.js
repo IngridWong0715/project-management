@@ -1,13 +1,11 @@
-//Once the following is added, team#show AJAX projects index stops working
-
 $(function(){
-  handlebarsSetup();
+  if (document.querySelector("#task-partial-template")){
+    projectHandlebarsSetup();
+  }
   $("a.view-tasks").on('click', function(e){
 
     e.preventDefault();
     var projectId = $(this).data('id');
-
-
 
       if (this.innerText=='Hide Tasks') {
         $('div.tasks table').empty();
@@ -28,6 +26,6 @@ $(function(){
   });
 });
 
-function handlebarsSetup(){
+function projectHandlebarsSetup(){
   Handlebars.registerPartial('taskPartial', document.getElementById('task-partial-template').innerHTML)
 }

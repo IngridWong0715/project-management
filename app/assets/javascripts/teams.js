@@ -1,5 +1,8 @@
 $(function(){
-  handlebarsSetup();
+  if (document.querySelector("#project-partial-template")){
+    handlebarsSetup();
+  }
+
   $("a.view_projects").on('click', function(e){
       e.preventDefault();
 
@@ -26,5 +29,5 @@ $(function(){
 })
 
 function handlebarsSetup(){
-  Handlebars.registerPartial('projectPartial', document.getElementById('project-template-partial').innerHTML)
+  Handlebars.registerPartial('projectPartial', document.getElementById('project-partial-template').innerHTML)
 }
