@@ -32,7 +32,7 @@
             </tr>
           </thead>
           <tbody>
-            INSERT PROJECTS HERE
+          
 
           </tbody>
           </table>
@@ -40,7 +40,7 @@
 
         </div>
 
-        <%= render partial: "team_projects_index_table", locals: {projects: @team.projects} %>
+        <%#= render partial: "team_projects_index_table", locals: {projects: @team.projects} %>
         <%= link_to 'Create new project', new_team_project_path(@team) %>
 
       </div>
@@ -55,8 +55,9 @@
 
   <script id="project-template" type="text/x-handlebars-template">
     <tr>
-      <td>{{name}}</td>
+      <td><a href="/teams/{{team_id}}/projects/{{id}}">{{name}}</a></td>
       <td>{{description}}</td>
+      <td>{{due_date}}</td>
 
       <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
     </tr>

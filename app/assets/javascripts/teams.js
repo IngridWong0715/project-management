@@ -9,13 +9,15 @@ $(function(){
 
 
 
-    var id = $(this).data("id")
+    var teamId = $(this).data("id")
     var tbody = $("div.projects tbody")
 
-    $.get( `/teams/${id}/projects`, function( data ) {
+    $.get( `/teams/${teamId}/projects`, function( data ) {
 
       data.forEach(function(project){
-        var context = {name: project["name"], description: project["description"]}
+
+        var due_date  = new Date(project.due_date).toString();
+        var context = {team_id: teamId, id: project["id"], name: project["name"], description: project["description"], due_date: due_date}
         var html    = template(context);
         tbody.append(html);
 
