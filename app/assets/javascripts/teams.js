@@ -3,7 +3,7 @@ $(function(){
   $("a.view_projects").on('click', function(e){
       e.preventDefault();
 
-      var teamId = $(this).data("id")
+      var teamId = $(this).data("id");
 
       if (this.innerText=="Hide Projects"){
 
