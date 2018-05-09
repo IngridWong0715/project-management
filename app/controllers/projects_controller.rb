@@ -2,7 +2,14 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = current_user.projects
+    if params[:team_id]
+      @team = Team.find(params[:team_id])
+      @projects = @team.projects
+
+    else
+      @projects = current_user.projects
+    end
+    render json: @projects
   end
 
   def new
