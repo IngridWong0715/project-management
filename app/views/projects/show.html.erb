@@ -1,36 +1,38 @@
 <div class="container formatted_show">
-    <h3 class="text-center"><%= @project.name %> </h3>
-  <div class="row">
-    <div class="col description_box">
-    <text_area>  Project Description: <%= @project.description %></text_area>
-    </div>
-    <div class="col">
-      People working on this project:  <%= @project.team ? @project.team.name : "Just me." %><br>
-      <%= formatted_datetime(@project.due_date) %><br>
-      <div class="right_bottom_link">
-        <% if @project.team %>
-          <%= link_to 'Edit Project', edit_team_project_path(@project.team, @project) %><br>
-        <% else %>
-          <%= link_to 'Edit Project', edit_project_path(@project) %><br>
-        <% end %>
+  <h3 class="text-center"><%= @project.name %> </h3>
+  <div class="project-all-details-container">
 
-        <%= link_to "Delete", @project, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+    <div class="row">
+      <div class="col description_box">
+      <text_area>  Project Description: <%= @project.description %></text_area>
       </div>
+      <div class="col">
+        People working on this project:  <%= @project.team ? @project.team.name : "Just me." %><br>
+        <%= formatted_datetime(@project.due_date) %><br>
+        <div class="right_bottom_link">
+          <% if @project.team %>
+            <%= link_to 'Edit Project', edit_team_project_path(@project.team, @project) %><br>
+          <% else %>
+            <%= link_to 'Edit Project', edit_project_path(@project) %><br>
+          <% end %>
 
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col tasks_display_box">
-      <a href="/projects/<%=@project.id%>/tasks" class="view-tasks">View Tasks</a>
-      <div class="tasks">
+          <%= link_to "Delete", @project, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+        </div>
 
       </div>
-
-      <%#= render partial: "project_tasks_index", locals: {tasks: @project.tasks} %>
-        <%= link_to 'Create new task', new_project_task_path(@project) %>
     </div>
 
+    <div class="row">
+      <div class="col tasks_display_box">
+        <a href="/projects/<%=@project.id%>/tasks" class="view-tasks">View Tasks</a>
+        <div class="tasks">
+
+        </div>
+
+        <%#= render partial: "project_tasks_index", locals: {tasks: @project.tasks} %>
+          <%= link_to 'Create new task', new_project_task_path(@project) %>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -56,7 +58,7 @@
 
 <script id="task-partial-template" type="text/x-handlebars-template">
   <tr>
-    <td><a href="/projects/{{project_id}}/tasks/{{id}}">{{name}}</a></td>
+    <td><a href="/projects/{{project_id}}/tasks/{{id}}" class="task-link">{{name}}</a></td>
     <td>{{description}}</td>
     <td><{{due_date}})%></td>
     <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>

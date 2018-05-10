@@ -24,7 +24,18 @@ $(function(){
 
 
   });
+
+  $('div.tasks').on('click', '.task-link', function(e){
+    e.preventDefault();
+    $.get(this.href, function(data){
+      $('div.project-all-details-container').html(data['name'])
+
+    }, 'json')
+  })
 });
+
+
+
 
 function projectHandlebarsSetup(){
   Handlebars.registerPartial('taskPartial', document.getElementById('task-partial-template').innerHTML)

@@ -19,7 +19,6 @@
     <div class="row">
       <div class="col tasks_display_box">
         <a href="/teams/<%=@team.id%>/projects" data-id="<%=@team.id%>" class="view_projects">View Projects</a>
-
         <div class="projects">
         </div>
         <%#= render partial: "team_projects_index_table", locals: {projects: @team.projects} %>
@@ -49,7 +48,7 @@
 
 <script id="project-partial-template" type="text/x-handlebars-template">
   <tr>
-    <td><a href="/teams/{{team_id}}/projects/{{id}}" class="project-link">{{name}}</a></td>
+    <td><a href="/teams/{{team_id}}/projects/{{id}}">{{name}}</a></td>
     <td>{{description}}</td>
     <td>{{due_date}}</td>
     <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>

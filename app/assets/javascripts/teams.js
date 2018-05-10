@@ -28,13 +28,8 @@ $(function(){
     });
     //END OF REFACTORING NEEDED
 
-    // targeting <a class="project-link"> which is dynamically created by the displayProject function
-    // ISSUE: “ Event handlers are bound only to the currently selected elements; they must exist on the page at the time your code makes the call to .on().”
-    // since .on() is called at document ready, and the <a> tag is added dynamically later. Doesn't work
-    $('div.projects').on('click', '.project-link', function(e){
-        alert("YOU CLICKED!")
-      e.preventDefault();
-    })
+
+
 });
 
 function handlebarsSetup(){

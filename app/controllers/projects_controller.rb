@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
 
   end
 
-  def show
+  def show  
   end
 
   def edit
