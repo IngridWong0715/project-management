@@ -5,7 +5,6 @@ class ProjectsController < ApplicationController
     if params[:team_id]
       @team = Team.find(params[:team_id])
       @projects = @team.projects
-
     else
       @projects = current_user.projects
     end
@@ -60,6 +59,7 @@ class ProjectsController < ApplicationController
   def destroy
 
     @project.destroy
+
     redirect_to root_path
   end
 

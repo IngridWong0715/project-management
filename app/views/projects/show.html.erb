@@ -1,89 +1,31 @@
-<a href="#" class="view-project-link">View Project</a>
+<div class="container formatted_show">
+    <h3 class="text-center"><%= @project.name %> </h3>
+  <div class="row">
+    <div class="col description_box">
+    <text_area>  Project Description: <%= @project.description %></text_area>
+    </div>
+    <div class="col">
+      People working on this project:  <%= @project.team ? @project.team.name : "Just me." %><br>
+      <%= formatted_datetime(@project.due_date) %><br>
+      <div class="right_bottom_link">
+        <% if @project.team %>
+          <%= link_to 'Edit Project', edit_team_project_path(@project.team, @project) %><br>
+        <% else %>
+          <%= link_to 'Edit Project', edit_project_path(@project) %><br>
+        <% end %>
 
-
-<script id="project-template" type="text/x-handlebars-template">
-  <div class="container formatted_show">
-    <h3 class="text-center">{{name}} </h3>
-    <div class="project-all-details-container">
-
-      <div class="row">
-        <div class="col description_box">
-        <text_area>  Project Description: {{description}}</text_area>
-        </div>
-        PUT THIS TEXT BACK HERE LATER
+        <%= link_to "Delete", @project, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
       </div>
 
-      <div class="row">
-        <div class="col tasks_display_box">
-
-          <div class="tasks">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Task Name</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Deadline</th>
-                  <th scope="col">Complete</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each tasks}}
-                  {{>taskPartial}}
-                {{/each}}
-              </tbody>
-            </table>
-
-          </div>
-          <a href="/projects/{{project_id}}/tasks/{{id}}/new">Create New Task</a>
-
-        </div>
-      </div>
     </div>
   </div>
 
-</script>
+  <div class="row">
+    <div class="col tasks_display_box">
 
-<script id="task-partial-template" type="text/x-handlebars-template">
-  <tr>
-    <td><a href="/projects/{{project_id}}/tasks/{{id}}" class="task-link" data-previous="PREVIOUS PROJECT ID" data-next="NEXT PROJECT ID">{{name}}</a></td>
-    <td>{{description}}</td>
-    <td><{{due_date}})%></td>
-    <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
-  </tr>
-
-</script>
-
-
-<!-- THE BELOW SCRIPT IS A COPY OF TASKS/SHOW.HTML.ERB -->
-<script id="task-show-template" type="text/x-handlebars-template">
-  <a href="/projects/{{project_id}}/tasks/{{id}}/edit" class="edit-task-link">Previous Task</a><br>
-  <a href="/projects/{{project_id}}/tasks/{{id}}/edit" class="edit-task-link">Next Task</a><br>
-  <div class="container">
-    <div class="row">
-       <div class="col formatted_show">
-         <h3 class="text-center">{{name}} </h3>
-         <div class="row">
-
-           <div class="col-8 col-sm-6 description_box">
-             {{description}}
-           </div>
-
-           <div class="col-8 col-sm-6">
-              Due: {{due_date}}<br>
-              Create a checklist<br>
-              Add attachment <br>
-
-              Have a "complete task" button <br>
-              <a href="/projects/{{project_id}}/tasks/{{id}}/edit" class="edit-task-link">Edit Task</a><br>
-
-              <h4>DELETE TASK: TO IMPLEMENT!!!</h4>
-              <div class="right_bottom_link">
-
-
-              </div>
-           </div>
-        </div>
-      </div>
+      <%= render partial: "project_tasks_index", locals: {tasks: @project.tasks} %>
+        <%= link_to 'Create new task', new_project_task_path(@project) %>
     </div>
+
   </div>
-</script>
+</div>
