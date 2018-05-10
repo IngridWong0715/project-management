@@ -3,33 +3,24 @@ $(function(){
     projectHandlebarsSetup();
   }
 
-// Display project details
-
-    var projectId = $(this).data('id');
-
-    $.get(this.href, function(data){
-
-
-        }, 'json');
-
-
-
-
-
   // Task show page
 
   $(document.body).on('click', '.task-link', function(e){
     e.preventDefault();
-    var source   = document.getElementById("task-show-template").innerHTML;
-    var template = Handlebars.compile(source);
 
     $.get(this.href, function(data){
 
-      var html = template(data)
+      $('div.task-box').empty();
 
-      $('div.project-all-details-container').html(html);
+      debugger;
+      $('div.task-box').html(data["name"])
 
 
+        var source   = document.getElementById("task-show-template").innerHTML;
+        var template = Handlebars.compile(source);
+
+        var html = template(data);
+        $('div.task-box').html(html);
     }, 'json')
   })// END TASK SHOW PAGE
 

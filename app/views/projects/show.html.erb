@@ -21,11 +21,34 @@
   </div>
 
   <div class="row">
-    <div class="col tasks_display_box">
-
+    <div class="col tasks_display_box task-box">
       <%= render partial: "project_tasks_index", locals: {tasks: @project.tasks} %>
         <%= link_to 'Create new task', new_project_task_path(@project) %>
     </div>
-
   </div>
 </div>
+
+<script id="task-show-template" type="text/x-handlebars-template">
+  <div class="container">
+    <div class="row">
+       <div class="col formatted_show">
+         <h3 class="text-center">{{name}} </h3>
+         <div class="row">
+           <div class="col-8 col-sm-6 description_box">
+             {{description}}
+           </div>
+           <div class="col-8 col-sm-6">
+              Due: {{due_date}}<br>
+              Create a checklist<br>
+              Add attachment <br>
+              Have a "complete task" button <br>
+              <div class="right_bottom_link">
+                <a href="/projects/{{project_id}}/tasks/{{id}}/edit">Edit Task</a>
+                <a href="/projects/{{project_id}}/tasks/{{id}}">Delete Task Task</a>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
