@@ -65,3 +65,33 @@
   </tr>
 
 </script>
+
+<script id="task-show-template" type="text/x-handlebars-template">
+  <div class="container">
+    <div class="row">
+       <div class="col formatted_show">
+         <h3 class="text-center">{{name}} </h3>
+         <div class="row">
+
+           <div class="col-8 col-sm-6 description_box">
+             {{description}}
+           </div>
+
+           <div class="col-8 col-sm-6">
+              Due: {{due_date}}<br>
+              Create a checklist<br>
+              Add attachment <br>
+
+              Have a "complete task" button <br>
+              <div class="right_bottom_link">
+                <a href="/projects/{{project_id}}/tasks/{{id}}/edit" class="edit-task-link">Edit Task</a><br>
+
+                <h4>DELETE TASK: TO IMPLEMENT!!!</h4>
+
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

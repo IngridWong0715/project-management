@@ -27,8 +27,14 @@ $(function(){
 
   $('div.tasks').on('click', '.task-link', function(e){
     e.preventDefault();
+    var source   = document.getElementById("task-show-template").innerHTML;
+    var template = Handlebars.compile(source);
+
     $.get(this.href, function(data){
-      $('div.project-all-details-container').html(data['name'])
+      var html = template(data)
+
+      $('div.project-all-details-container').html(html);
+      
 
     }, 'json')
   })

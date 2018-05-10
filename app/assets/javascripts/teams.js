@@ -28,8 +28,6 @@ $(function(){
     });
     //END OF REFACTORING NEEDED
 
-
-
 });
 
 function handlebarsSetup(){
