@@ -58,7 +58,7 @@
 
 <script id="task-partial-template" type="text/x-handlebars-template">
   <tr>
-    <td><a href="/projects/{{project_id}}/tasks/{{id}}" class="task-link">{{name}}</a></td>
+    <td><a href="/projects/{{project_id}}/tasks/{{id}}" class="task-link" data-previous="PREVIOUS PROJECT ID" data-next="NEXT PROJECT ID">{{name}}</a></td>
     <td>{{description}}</td>
     <td><{{due_date}})%></td>
     <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
@@ -66,7 +66,10 @@
 
 </script>
 
+<!-- THE BELOW SCRIPT IS A COPY OF TASKS/SHOW.HTML.ERB -->
 <script id="task-show-template" type="text/x-handlebars-template">
+  <a href="/projects/{{project_id}}/tasks/{{id}}/edit" class="edit-task-link">Previous Task</a><br>
+  <a href="/projects/{{project_id}}/tasks/{{id}}/edit" class="edit-task-link">Next Task</a><br>
   <div class="container">
     <div class="row">
        <div class="col formatted_show">
@@ -83,10 +86,11 @@
               Add attachment <br>
 
               Have a "complete task" button <br>
-              <div class="right_bottom_link">
-                <a href="/projects/{{project_id}}/tasks/{{id}}/edit" class="edit-task-link">Edit Task</a><br>
+              <a href="/projects/{{project_id}}/tasks/{{id}}/edit" class="edit-task-link">Edit Task</a><br>
 
-                <h4>DELETE TASK: TO IMPLEMENT!!!</h4>
+              <h4>DELETE TASK: TO IMPLEMENT!!!</h4>
+              <div class="right_bottom_link">
+
 
               </div>
            </div>

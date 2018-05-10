@@ -22,7 +22,7 @@ $(function(){
 
           var html = template(data);
           $("div.projects").append(html);
-        });
+        }, 'json');
         this.innerText="Hide Projects"
       }
     });
