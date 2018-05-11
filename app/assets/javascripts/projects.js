@@ -9,27 +9,27 @@ $(function(){
 
 function getSurroundingTask(position){
   // IS THERE A BETTER WAY TO GET PROJECT AND TASK?
-  var project = $(this).data('project')
-  var task = $('div.task-box').data('task')
+  let project = $(this).data('project')
+  let task = $('div.task-box').data('task')
 
   // fetch next task
     $.get(`http://localhost:3000/projects/${project}/tasks/${task}/surrounding_tasks`, function(data){
 
-      var previousTask = data[position]
+      let previousTask = data[position]
       if (previousTask) {
         $.get(`http://localhost:3000/projects/${project}/tasks/${previousTask}`, function(data){
           //repeated code!!!
           $('div.task-box').empty();
-            var source   = document.getElementById("task-show-template").innerHTML;
-            var template = Handlebars.compile(source);
-            var html = template(data);
+            let source   = document.getElementById("task-show-template").innerHTML;
+            let template = Handlebars.compile(source);
+            let html = template(data);
             $('div.task-box').html(html);
             //end of repeated code
 
             // newReferenceTask is the current task, that is then passed into task-box
             //to reference for next cycle of previous/next request
-            var taskId = this.url.split('/')
-            var newReferenceTask = taskId[taskId.length-1]
+            let taskId = this.url.split('/')
+            let newReferenceTask = taskId[taskId.length-1]
 
             $('div.task-box').data('task', newReferenceTask)
 
@@ -71,9 +71,9 @@ function addEventListeners(){
     $.get(task.href, function(data){
 
       $('div.task-box').empty();
-        var source   = document.getElementById("task-show-template").innerHTML;
-        var template = Handlebars.compile(source);
-        var html = template(data);
+        let source   = document.getElementById("task-show-template").innerHTML;
+        let template = Handlebars.compile(source);
+        let html = template(data);
         $('div.task-box').html(html);
     }, 'json');
     // ASK!!!(ideally, want to add these 2 values to the dynamically created next and previous links: but can't because it's ASYNC)
@@ -84,7 +84,6 @@ function addEventListeners(){
 
 function createNewTask(task){
   $.post($(task).attr('action'), $(task).serialize(), function(data){
-    debugger;
     $('table.tasks_table tbody').append(
       ` <td>${data['name']}</td>
         <td>${data['description']}</td>
