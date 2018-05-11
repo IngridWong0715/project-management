@@ -3,7 +3,7 @@ $(function(){
     projectHandlebarsSetup();
   }
 
-  // Task show page when clicked on each task name in the table
+  // FUNCTION//Task show page when clicked on each task name in the table
   $('div.task-box').on('click', '.task-link', function(e){
     e.preventDefault();
     $.get(this.href, function(data){
@@ -18,9 +18,9 @@ $(function(){
     // so save them to the div.task-box
     $('div.task-box').data('task', $(this).data('task'))
 
-  })// END TASK SHOW PAGE
+  })// FUNCTION
 
-  // Get and render the next task in a show page
+  // FUNCTION//Get and render the next task in a show page
   $('div.task-box').on('click', '.next-task', function(e){
     e.preventDefault();
 
@@ -41,33 +41,50 @@ $(function(){
             $('div.task-box').html(html);
             //end of repeated code
 
-            var nextTask = this.url.slice(-1)
-            $('div.task-box').data('task', nextTask)
+            // newReferenceTask is the current task, that is then passed into task-box
+            //to reference for next cycle of previous/next request
+            var taskId = this.url.split('/')
+            var newReferenceTask = taskId[taskId.length-1]
+            $('div.task-box').data('task', newReferenceTask)
 
         },'json')
       }, 'json')
+  });//FUNCTION
 
 
-  })
+  // FUNCTION//Get and render the previous task in a show page
+  $('div.task-box').on('click', '.previous-task', function(e){
+    e.preventDefault();
 
-  // Delete project
-  $(document.body).on('click', 'a.delete', function(e){
+    // IS THERE A BETTER WAY TO GET PROJECT AND TASK?
+    var project = $(this).data('project')
+    var task = $('div.task-box').data('task')
 
-    this.preventDefault();
+    // fetch next task
+      $.get(`http://localhost:3000/projects/${project}/tasks/${task}/surrounding_tasks`, function(data){
 
-    $.ajax({
-        method: "DELETE",
-        url: this.href,
-        data: {id: $(this).data('id')}
-      }).done(function(){
-        console.log("OBJECT DELETED")
+        var previousTask = data['previous']
+        $.get(`http://localhost:3000/projects/${project}/tasks/${previousTask}`, function(data){
+          //repeated code!!!
+          $('div.task-box').empty();
+            var source   = document.getElementById("task-show-template").innerHTML;
+            var template = Handlebars.compile(source);
+            var html = template(data);
+            $('div.task-box').html(html);
+            //end of repeated code
 
-      })
+            // newReferenceTask is the current task, that is then passed into task-box
+            //to reference for next cycle of previous/next request
+            var taskId = this.url.split('/')
+            var newReferenceTask = taskId[taskId.length-1]
 
-  }) // end delete project
+            $('div.task-box').data('task', newReferenceTask)
 
-});
+        },'json')
+      }, 'json')
+  });//FUNCTION
 
+});// END OF DOCUMENT READY
 
 
 function projectHandlebarsSetup(){
