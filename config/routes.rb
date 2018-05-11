@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
+  get '/projects/:project_id/tasks/:id/surrounding_tasks', to: 'tasks#surrounding'
+
 end
