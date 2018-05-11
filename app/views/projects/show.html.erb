@@ -19,10 +19,10 @@
       </div>
     </div>
   </div>
-  <%binding.pry%>
+
   <div class="row">
     <div class="col tasks_display_box task-box">
-          <%= link_to 'Create new task', new_project_task_path(@project) %>
+
           <%= form_for ([@project,  @project.tasks.build]) do |f| %>
           <%= f.label :name %>
           <%= f.text_field :name %>
@@ -33,6 +33,7 @@
           <%= f.hidden_field :project_id, value: @project.id %>
           <%= f.submit %>
           <% end %>
+          
       <%= render partial: "project_tasks_index", locals: {tasks: @project.tasks, project: @project} %>
 
     </div>

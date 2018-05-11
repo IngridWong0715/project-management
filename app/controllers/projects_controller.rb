@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    binding.pry
+  
 
     respond_to do |f|
       f.html {render 'show'}
