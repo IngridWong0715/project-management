@@ -16,14 +16,14 @@
 
         <%= link_to "Delete", @project, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
       </div>
-
     </div>
   </div>
 
   <div class="row">
     <div class="col tasks_display_box task-box">
+            <%= link_to 'Create new task', new_project_task_path(@project) %>
       <%= render partial: "project_tasks_index", locals: {tasks: @project.tasks} %>
-        <%= link_to 'Create new task', new_project_task_path(@project) %>
+
     </div>
   </div>
 </div>
@@ -33,7 +33,7 @@
     <div class="row">
        <div class="col formatted_show">
          <h3 class="text-center">{{name}} </h3>
-         <a href="#" class="previous-task" data-project="{{project_id}}">Previous Task</a>
+         <a href="#" class="previous-task" data-project="{{project_id}}">Previous Task | </a>
          <a href="#" class="next-task" data-project="{{project_id}}">Next Task</a>
 
          <div class="row">

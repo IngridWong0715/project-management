@@ -6,7 +6,7 @@ Project review issues(01/05/2018)
 
 Functionalities to build:
 
-
+- SCOPE METHODS: (priorities) http://guides.rubyonrails.org/active_record_querying.html#scopes
 - Share tasks and projects with other users
   (right now can only do so through teams)
 

@@ -32,22 +32,28 @@ $(function(){
       $.get(`http://localhost:3000/projects/${project}/tasks/${task}/surrounding_tasks`, function(data){
 
         var nextTask = data['next']
-        $.get(`http://localhost:3000/projects/${project}/tasks/${nextTask}`, function(data){
-          //repeated code!!!
-          $('div.task-box').empty();
-            var source   = document.getElementById("task-show-template").innerHTML;
-            var template = Handlebars.compile(source);
-            var html = template(data);
-            $('div.task-box').html(html);
-            //end of repeated code
+        if (nextTask) { //if the current task is not the last task
+          $.get(`http://localhost:3000/projects/${project}/tasks/${nextTask}`, function(data){
+            //repeated code!!!
+            $('div.task-box').empty();
+              var source   = document.getElementById("task-show-template").innerHTML;
+              var template = Handlebars.compile(source);
+              var html = template(data);
+              $('div.task-box').html(html);
+              //end of repeated code
 
-            // newReferenceTask is the current task, that is then passed into task-box
-            //to reference for next cycle of previous/next request
-            var taskId = this.url.split('/')
-            var newReferenceTask = taskId[taskId.length-1]
-            $('div.task-box').data('task', newReferenceTask)
+              // newReferenceTask is the current task, that is then passed into task-box
+              //to reference for next cycle of previous/next request
+              var taskId = this.url.split('/')
+              var newReferenceTask = taskId[taskId.length-1]
+              $('div.task-box').data('task', newReferenceTask)
 
-        },'json')
+          },'json')
+
+        } else {
+          alert("You're viewing the last task");
+        }
+
       }, 'json')
   });//FUNCTION
 
@@ -64,23 +70,29 @@ $(function(){
       $.get(`http://localhost:3000/projects/${project}/tasks/${task}/surrounding_tasks`, function(data){
 
         var previousTask = data['previous']
-        $.get(`http://localhost:3000/projects/${project}/tasks/${previousTask}`, function(data){
-          //repeated code!!!
-          $('div.task-box').empty();
-            var source   = document.getElementById("task-show-template").innerHTML;
-            var template = Handlebars.compile(source);
-            var html = template(data);
-            $('div.task-box').html(html);
-            //end of repeated code
+        if (previousTask) {
+          $.get(`http://localhost:3000/projects/${project}/tasks/${previousTask}`, function(data){
+            //repeated code!!!
+            $('div.task-box').empty();
+              var source   = document.getElementById("task-show-template").innerHTML;
+              var template = Handlebars.compile(source);
+              var html = template(data);
+              $('div.task-box').html(html);
+              //end of repeated code
 
-            // newReferenceTask is the current task, that is then passed into task-box
-            //to reference for next cycle of previous/next request
-            var taskId = this.url.split('/')
-            var newReferenceTask = taskId[taskId.length-1]
+              // newReferenceTask is the current task, that is then passed into task-box
+              //to reference for next cycle of previous/next request
+              var taskId = this.url.split('/')
+              var newReferenceTask = taskId[taskId.length-1]
 
-            $('div.task-box').data('task', newReferenceTask)
+              $('div.task-box').data('task', newReferenceTask)
 
-        },'json')
+          },'json')
+
+        } else {
+          alert("You're viewing the first task");
+        }
+
       }, 'json')
   });//FUNCTION
 

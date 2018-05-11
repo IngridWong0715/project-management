@@ -1,4 +1,5 @@
 <div class="container">
+
     <%= link_to "Create New Project", new_project_path %>
   <% if !@past_due_projects.empty? %>
     <%= render partial: "past_due_projects", locals: {past_due_projects: @past_due_projects} %>

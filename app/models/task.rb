@@ -3,10 +3,6 @@ class Task < ApplicationRecord
   delegate :team, :user, :to => :project, :allow_nil => true #implements the belongs_to, through relationship
   validates :name, :due_date, presence: true
 
-  def hello
-
-  end
-
   def get_previous_and_next_task_ids
     project_tasks = self.project.tasks
     task_index = project_tasks.index(self)

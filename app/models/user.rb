@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :projects
   has_many :tasks, through: :projects
 
+  #scope :individual_projects, -> {where ( current_user)}
+
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -35,7 +38,7 @@ class User < ApplicationRecord
 end
 
 def self.all_but_current_user(current_user)
-  
+
   where.not(id: current_user.id)
 end
 

@@ -6,6 +6,7 @@ class Project < ApplicationRecord
 
   validates :name, :due_date, presence: true
 
+  scope :all_individual_projects, ->(user_id) { where("user_id = ?", user_id) }
 
   def self.all_individual_projects(user) # NECESSARY? IT"S THE SAME AS CALLING CURRENT_USER.PROJECTS
     where(user_id: user, team_id: nil)

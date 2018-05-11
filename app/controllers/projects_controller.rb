@@ -6,9 +6,12 @@ class ProjectsController < ApplicationController
       @team = Team.find(params[:team_id])
       @projects = @team.projects
     else
-      @projects = current_user.projects
+      @projects = Project.all_individual_projects(current_user.id)
     end
-    render json: @projects
+    respond_to do |f|
+      f.html {render 'index'}
+      f.json {render json: @projects}
+    end
   end
 
   def new
