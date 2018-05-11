@@ -18,14 +18,16 @@ class TasksController < ApplicationController
       end
     end
 
-   def new
-     @project = Project.find(params[:project_id])
-     @task = @project.tasks.new
-   end
+   # def new
+   #   @project = Project.find(params[:project_id])
+   #   @task = @project.tasks.new
+   # end
 
   def create
     task = Task.create(task_params)
-    redirect_to project_path(task.project)
+    respond_to do |f|
+      f.json {render json: task}
+    end
   end
 
   def edit

@@ -3,6 +3,16 @@ $(function(){
     projectHandlebarsSetup();
   }
 
+  $('form.new_task').on('submit', function(e){
+    e.preventDefault();
+    $.post($(this).attr('action'), $(this).serialize(), function(data){
+      $('table.tasks_table tbody').append(
+        ` <td>${data['name']}</td>
+          <td>${data['description']}</td>
+        </tr>`);
+    }, 'json')
+  });
+
   // FUNCTION//Task show page when clicked on each task name in the table
   $('div.task-box').on('click', '.task-link', function(e){
     e.preventDefault();
@@ -95,6 +105,8 @@ $(function(){
 
       }, 'json')
   });//FUNCTION
+
+
 
 });// END OF DOCUMENT READY
 

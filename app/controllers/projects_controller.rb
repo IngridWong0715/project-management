@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
         if project.team
           redirect_to team_project_path(project.team, project)
         else
+          binding.pry
           redirect_to project_path(project)
         end
       else
@@ -40,6 +41,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    binding.pry
 
     respond_to do |f|
       f.html {render 'show'}
