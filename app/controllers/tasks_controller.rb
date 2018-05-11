@@ -20,9 +20,7 @@ class TasksController < ApplicationController
 
   def create
     task = Task.create(task_params)
-    respond_to do |f|
-      f.json {render json: task}
-    end
+    render json: task
   end
 
   def edit

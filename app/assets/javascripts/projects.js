@@ -3,32 +3,9 @@ $(function(){
     projectHandlebarsSetup();
   }
 
-  $('form.new_task').on('submit', function(e){
-    e.preventDefault();
-    $.post($(this).attr('action'), $(this).serialize(), function(data){
-      $('table.tasks_table tbody').append(
-        ` <td>${data['name']}</td>
-          <td>${data['description']}</td>
-        </tr>`);
-    }, 'json')
-  });
+  addEventListeners();
 
-  // FUNCTION//Task show page when clicked on each task name in the table
-  $('div.task-box').on('click', '.task-link', function(e){
-    e.preventDefault();
-    $.get(this.href, function(data){
 
-      $('div.task-box').empty();
-        var source   = document.getElementById("task-show-template").innerHTML;
-        var template = Handlebars.compile(source);
-        var html = template(data);
-        $('div.task-box').html(html);
-    }, 'json');
-    // ASK!!!(ideally, want to add these 2 values to the dynamically created next and previous links: but can't because it's ASYNC)
-    // so save them to the div.task-box
-    $('div.task-box').data('task', $(this).data('task'))
-
-  })// FUNCTION
 
   // FUNCTION//Get and render the next task in a show page
   $('div.task-box').on('click', '.next-task', function(e){
@@ -107,10 +84,66 @@ $(function(){
   });//FUNCTION
 
 
-
 });// END OF DOCUMENT READY
 
 
+function addEventListeners(){
+  $('form.new_task').on('submit', function(e){
+    e.preventDefault();
+    createNewTask(this);
+  });
+
+  $('div.task-box').on('click', '.task-link', function(e){
+    e.preventDefault();
+    loadTaskShowPage(this);
+  });
+}
+
+  function loadTaskShowPage(task){
+    $.get(task.href, function(data){
+
+      $('div.task-box').empty();
+        var source   = document.getElementById("task-show-template").innerHTML;
+        var template = Handlebars.compile(source);
+        var html = template(data);
+        $('div.task-box').html(html);
+    }, 'json');
+    // ASK!!!(ideally, want to add these 2 values to the dynamically created next and previous links: but can't because it's ASYNC)
+    // so save them to the div.task-box
+    $('div.task-box').data('task', $(task).data('task'))
+
+  }
+
+
+  // FUNCTION//Task show page when clicked on each task name in the table
+  // $('div.task-box').on('click', '.task-link', function(e){
+  //   e.preventDefault();
+  //
+  //   $.get(this.href, function(data){
+  //
+  //     $('div.task-box').empty();
+  //       var source   = document.getElementById("task-show-template").innerHTML;
+  //       var template = Handlebars.compile(source);
+  //       var html = template(data);
+  //       $('div.task-box').html(html);
+  //   }, 'json');
+  //   // ASK!!!(ideally, want to add these 2 values to the dynamically created next and previous links: but can't because it's ASYNC)
+  //   // so save them to the div.task-box
+  //   $('div.task-box').data('task', $(this).data('task'))
+  //
+  // })// FUNCTION
+
+
+function createNewTask(task){
+  $.post($(task).attr('action'), $(task).serialize(), function(data){
+    debugger;
+    $('table.tasks_table tbody').append(
+      ` <td>${data['name']}</td>
+        <td>${data['description']}</td>
+        <td>${data['due_date']}</td>
+      </tr>`);
+  }, 'json')
+}
 function projectHandlebarsSetup(){
   Handlebars.registerPartial('taskPartial', document.getElementById('task-partial-template').innerHTML)
 }
