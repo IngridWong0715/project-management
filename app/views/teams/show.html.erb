@@ -20,7 +20,6 @@
       <a href="/teams/<%=@team.id%>/projects" data-id="<%=@team.id%>" class="view_projects">View Projects</a>
       <div class="projects">
       </div>
-      <%#= render partial: "team_projects_index_table", locals: {projects: @team.projects} %>
       <%= link_to 'Create new project', new_team_project_path(@team) %>
     </div>
   </div>

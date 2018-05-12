@@ -13,5 +13,4 @@
 //= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require projects
-//= require teams
+//= require_tree .
