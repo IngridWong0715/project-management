@@ -17,7 +17,7 @@ class Task {
       <td><a href="http://localhost:3000/projects/${this.project_id}/tasks/${this.id}" data-task="${this.id}" class="task-link">${this.name}</a>
       <td>${this.description}</td>
       <td>${this.due_date}</td>
-      <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
+      <td><div class="checkbox checkbox-success"><input type="checkbox" class="styled" data-task="${this.id}"><label></label></div></td>
     </tr>`;
     return formatted;
   }

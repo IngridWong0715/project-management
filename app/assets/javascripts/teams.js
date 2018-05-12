@@ -22,7 +22,6 @@ function displayProject(project){
               <th scope="col">Name</th>
               <th scope="col">Description</th>
               <th scope="col">Deadline</th>
-              <th scope="col">Complete</th>
             </tr>
           </thead>
           <tbody>

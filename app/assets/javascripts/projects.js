@@ -1,7 +1,16 @@
 $(function(){
   addEventListeners();
+  $( "input[type=checkbox]" ).on( "click", completeTask);
 });
 
+
+function completeTask(){
+  let checkedTask = $( "input:checked" ).data('task')
+  //HOW TO TELL ACTIVERECORD DATABASE THAT THIS TASK IS NOW COMPLETE?
+
+  $(`tr#row-${checkedTask}`).remove();
+
+}
 
 class Project {
   constructor(attributes){
@@ -20,7 +29,6 @@ class Project {
       <td><a href="/teams/${this.team_id}/projects/${this.id}">${this.name}</a></td>
       <td>${this.description}</td>
       <td>${this.due_date}</td>
-      <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
     </tr>
     `
     return formatted;
@@ -29,10 +37,14 @@ class Project {
 
 
 function createNewTask(task){
+
   $.post($(task).attr('action'), $(task).serialize(), function(data){
+
     let task = new Task(data);
     task.set_surrounding_tasks();
     $('table.tasks_table tbody').append(task.formatDisplay());
+    document.getElementById('new_task').reset()
+
   }, 'json');
 }
 
@@ -73,7 +85,7 @@ function loadTaskShowPage(taskLink){
 }
 
 function addEventListeners(){
-  $('form.new_task').on('submit', function(e){
+  $('form#new_task').on('submit', function(e){
     e.preventDefault();
     createNewTask(this);
   });
