@@ -3,32 +3,32 @@ $(function(){
     handlebarsSetup();
   }
 
-  // Refactor into a displayProject function
+  // ISSUE: code stops working when I refactor this into function addEventListners
   $("a.view_projects").on('click', function(e){
-      e.preventDefault();
-
-      var teamId = $(this).data("id");
-
-      if (this.innerText=="Hide Projects"){
-
-        $("div.projects table").empty();
-        this.innerText = "View Projects"
-      } else {
-
-        $.get(this.href, function(data) {
-
-          var source   = document.getElementById("projects-table-template").innerHTML;
-          var template = Handlebars.compile(source);
-
-          var html = template(data);
-          $("div.projects").append(html);
-        }, 'json');
-        this.innerText="Hide Projects"
-      }
+    e.preventDefault();
+    displayProject(this);
     });
-    //END OF REFACTORING NEEDED
 
 });
+
+function displayProject(project){
+
+    let teamId = $(project).data("id");
+    if (project.innerText=="Hide Projects"){
+      $("div.projects table").empty();
+      project.innerText = "View Projects"
+    } else {
+      $.get(project.href, function(data) {
+        let source   = document.getElementById("projects-table-template").innerHTML;
+        let template = Handlebars.compile(source);
+        let html = template(data);
+        
+        $("div.projects").append(html);
+      }, 'json');
+      project.innerText="Hide Projects"
+    }
+
+}
 
 function handlebarsSetup(){
   Handlebars.registerPartial('projectPartial', document.getElementById('project-partial-template').innerHTML)

@@ -7,6 +7,41 @@ $(function(){
 
 });// END OF DOCUMENT READY
 
+
+//TASK OBJECT: CONSTRUCTOR FUNCTION
+
+class Task{
+  constructor(attributes){
+    this.id = attributes.id;
+    this.name = attributes.name;
+    this.description = attributes.description;
+    this.project_id = attributes.project_id;
+    this.due_date = attributes.due_date;
+    this.complete = attributes.complete;
+  }
+
+  formatDisplay(){
+    let formatted =
+    `<tr>
+      <td><a href="http://localhost:3000/projects/${this.project_id}/tasks/${this.id}" data-task="${this.id}" class="task-link">${this.name}</a>
+      <td>${this.description}</td>
+      <td>${this.due_date}</td>
+      <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
+    </tr>`;
+    return formatted;
+  }
+
+
+}
+
+function createNewTask(task){
+  $.post($(task).attr('action'), $(task).serialize(), function(data){
+    let task = new Task(data);
+    $('table.tasks_table tbody').append(task.formatDisplay());
+  }, 'json')
+}
+
+
 function getSurroundingTask(position){
   // IS THERE A BETTER WAY TO GET PROJECT AND TASK?
   let project = $(this).data('project')
@@ -82,15 +117,7 @@ function addEventListeners(){
 
   }
 
-function createNewTask(task){
-  $.post($(task).attr('action'), $(task).serialize(), function(data){
-    $('table.tasks_table tbody').append(
-      ` <td>${data['name']}</td>
-        <td>${data['description']}</td>
-        <td>${data['due_date']}</td>
-      </tr>`);
-  }, 'json')
-}
+
 function projectHandlebarsSetup(){
   Handlebars.registerPartial('taskPartial', document.getElementById('task-partial-template').innerHTML)
 }
