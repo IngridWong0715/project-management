@@ -13,7 +13,5 @@
 //= require jquery
 //= require rails-ujs
 //= require activestorage
-
-//= require handlebars-v4.0.11
 //= require projects
 //= require teams
