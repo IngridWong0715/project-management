@@ -33,37 +33,9 @@
           <%= f.hidden_field :project_id, value: @project.id %>
           <%= f.submit %>
           <% end %>
-          
+
       <%= render partial: "project_tasks_index", locals: {tasks: @project.tasks, project: @project} %>
 
     </div>
   </div>
 </div>
-
-<script id="task-show-template" type="text/x-handlebars-template">
-  <div class="container">
-    <div class="row">
-       <div class="col formatted_show">
-         <h3 class="text-center">{{name}} </h3>
-         <a href="#" class="previous-task" data-project="{{project_id}}">Previous Task | </a>
-         <a href="#" class="next-task" data-project="{{project_id}}">Next Task</a>
-
-         <div class="row">
-           <div class="col-8 col-sm-6 description_box">
-             {{description}}
-           </div>
-           <div class="col-8 col-sm-6">
-              Due: {{due_date}}<br>
-              Create a checklist<br>
-              Add attachment <br>
-              Have a "complete task" button <br>
-              <div class="right_bottom_link">
-                <a href="/projects/{{project_id}}/tasks/{{id}}/edit">Edit Task</a>
-                <a href="/projects/{{project_id}}/tasks/{{id}}">Delete Task Task</a>
-              </div>
-           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</script>

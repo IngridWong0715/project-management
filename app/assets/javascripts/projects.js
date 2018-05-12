@@ -1,11 +1,6 @@
 $(function(){
-  if (document.querySelector("#task-partial-template")){
-    projectHandlebarsSetup();
-  }
-
   addEventListeners();
-
-});// END OF DOCUMENT READY
+});
 
 class Task{
   constructor(attributes){
@@ -32,8 +27,7 @@ class Task{
   }
 
   formatShow(){
-    let formatted =
-    `<div class="container">
+    let formatted = `<div class="container">
       <div class="row">
          <div class="col formatted_show">
            <h3 class="text-center">${this.name} </h3>
@@ -57,15 +51,15 @@ class Task{
           </div>
         </div>
       </div>
-    </div>`
-
+    </div>`;
     return formatted;
   }
 
-  //NOT WORKING
+  //CODE NOT WORKING:
   set next(newNext){
     this._next = newNext; // look into this _ convention:
   }
+
   set previous(newPrevious){
     this._previous = newPrevious;
   }
@@ -79,7 +73,6 @@ class Task{
   }
   //NOT WORKING
 
-
 } // END CLASS TASK
 
 function createNewTask(task){
@@ -87,40 +80,43 @@ function createNewTask(task){
     let task = new Task(data);
     task.set_surrounding_tasks();
     $('table.tasks_table tbody').append(task.formatDisplay());
-  }, 'json')
+  }, 'json');
 }
 
+function loadSurroundingTaskShowPage(position){
+  // IS THERE A BETTER WAY TO STORE AND GET PROJECT AND TASK?
+  let project = $(this).data('project');
+  let task = $('div.task-box').data('task');
 
-function getSurroundingTask(position){
-  // IS THERE A BETTER WAY TO GET PROJECT AND TASK?
-  let project = $(this).data('project')
-  let task = $('div.task-box').data('task')
-
-  // fetch ${position} task
+  // fetch previoius/next task, depending on the position argument
     $.get(`http://localhost:3000/projects/${project}/tasks/${task}/surrounding_tasks`, function(data){
-
-      let previousTask = data[position]
-      if (previousTask) {
-        $.get(`http://localhost:3000/projects/${project}/tasks/${previousTask}`, function(data){
-
+      let searchedTask = data[position]
+      if (searchedTask) {
+        $.get(`http://localhost:3000/projects/${project}/tasks/${searchedTask}`, function(data){
           let task = new Task(data);
           $('div.task-box').html(task.formatShow());
 
-
-            // newReferenceTask is the current task, that is then passed into task-box
-            //to reference for next cycle of previous/next request
-            let taskId = this.url.split('/')
-            let newReferenceTask = taskId[taskId.length-1]
-
-            $('div.task-box').data('task', newReferenceTask)
-
+          // newReferenceTask is the current task, that is then passed into task-box
+          //to reference for next cycle of loadSurroundingTaskShowPage() invokation:
+          let taskId = this.url.split('/')
+          let newReferenceTask = taskId[taskId.length-1]
+          $('div.task-box').data('task', newReferenceTask);
         },'json')
-
       } else {
-        let index = (position == 'previous') ? 'first' : 'last'
+        let index = (position == 'previous') ? 'first' : 'last';
         alert(`You're viewing the ${index} task`);
       }
-    }, 'json')
+    }, 'json');
+}
+
+function loadTaskShowPage(taskLink){
+  $.get(taskLink.href, function(data){
+    let task = new Task(data);
+    $('div.task-box').html(task.formatShow());
+  }, 'json');
+  // ASK!!!(ideally, want to add the dynamically created next and previous links: but can't because it's ASYNC)
+  // so save a data-task = current_task.id to the div.task-box for future reference
+  $('div.task-box').data('task', $(taskLink).data('task'));
 }
 
 function addEventListeners(){
@@ -136,32 +132,11 @@ function addEventListeners(){
 
   $('div.task-box').on('click', '.next-task', function(e){
     e.preventDefault();
-    getSurroundingTask('next')
+    loadSurroundingTaskShowPage('next')
   });
-
 
   $('div.task-box').on('click', '.previous-task', function(e){
     e.preventDefault();
-    getSurroundingTask('previous')
+    loadSurroundingTaskShowPage('previous')
   });
-}
-
-  function loadTaskShowPage(task){
-    $.get(task.href, function(data){
-
-      $('div.task-box').empty();
-        let source   = document.getElementById("task-show-template").innerHTML;
-        let template = Handlebars.compile(source);
-        let html = template(data);
-        $('div.task-box').html(html);
-    }, 'json');
-    // ASK!!!(ideally, want to add these 2 values to the dynamically created next and previous links: but can't because it's ASYNC)
-    // so save them to the div.task-box
-    $('div.task-box').data('task', $(task).data('task'))
-
-  }
-
-
-function projectHandlebarsSetup(){
-  Handlebars.registerPartial('taskPartial', document.getElementById('task-partial-template').innerHTML)
 }
