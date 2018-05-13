@@ -4,7 +4,31 @@ $(function(){
     e.preventDefault();
     displayProject(this);
     });
+
+  $('div.container').on('submit', 'form.complete_project', function(e){
+    e.preventDefault();
+    completeProject(this);
+  });
+
 });
+
+
+
+function completeProject(projectForm){
+  $.ajax({
+    url: $(projectForm).attr('action'),
+    method: 'PATCH',
+    data: $(projectForm).serialize(),
+    dataType: 'json'
+
+  }).done(function(json){
+    debugger;
+    if (json.complete){
+        $(`tr#row-${json.id}`).remove(); //remove task from table
+        alert("Project marked completed");
+    }
+  });
+}
 
 
 function displayProject(projectLink){

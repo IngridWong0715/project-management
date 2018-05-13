@@ -2,8 +2,7 @@
   <tr>
 
     <%= form_for ([@project,  @project.tasks.build]) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder:"New Task" %>
     <%= f.hidden_field :project_id, value: @project.id %>
     <%= f.submit %>
     <% end %>
@@ -14,8 +13,6 @@
     <% if task.persisted? %>
       <tr id="row-<%=task.id%>">
         <td><a href="http://localhost:3000/projects/<%=task.project.id%>/tasks/<%=task.id%>" data-task="<%=task.id%>" class="task-link"><%=task.name%></a>
-        <td><%=task.description%></td>
-        <td><%=formatted_datetime(task.due_date) if task.due_date%></td>
         <td><%= form_for([task.project, task], html: {class: 'complete_task'}) do |f| %>
           <%= f.hidden_field :name, value: task.name %>
           <%= f.hidden_field :description, value: task.description %>

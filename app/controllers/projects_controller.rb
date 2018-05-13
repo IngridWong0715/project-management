@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-  
+
 
     respond_to do |f|
       f.html {render 'show'}
@@ -54,10 +54,21 @@ class ProjectsController < ApplicationController
 
   def update
       if @project.update(project_params)
-        redirect_to project_path(@project.id)
+        respond_to do |f|
+          f.html {redirect_to project_path(@project.id)}
+          f.json {render json: @project}
+        end
+
+
       else
-        flash[:notice] = "project not edited"
-        redirect_to edit_project_path(@project.id)
+        respond_to do |f|
+          f.html {
+            flash[:notice] = "project not edited"
+            redirect_to edit_project_path(@project.id)
+          }
+          f.json {render json: @project}
+        end
+
       end
   end
 
@@ -81,7 +92,7 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(
-      :name, :description, :team_id, :user_id, :due_date,
+      :name, :description, :team_id, :user_id, :due_date, :complete,
       data: params[:project][:data].try(:keys)
     )
   end

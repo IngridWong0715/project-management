@@ -15,8 +15,6 @@ class Task {
     let formatted =
     `<tr id="row-${this.id}">
       <td><a href="http://localhost:3000/projects/${this.project_id}/tasks/${this.id}" data-task="${this.id}" class="task-link">${this.name}</a>
-      <td>${this.description}</td>
-      <td>${this.due_date}</td>
       <td>
         <form class="complete_task" id="edit_task_${this.id}" action="/projects/${this.project_id}/tasks/${this.id}" method="post">
           <input type="hidden" name="_method" value="patch">
@@ -26,7 +24,7 @@ class Task {
             <input value="${this.project_id}" type="hidden" name="task[project_id]" id="task_project_id">
             <input value="${this.due_date}" type="hidden" name="task[due_date]" id="task_due_date">
             <input value="true" type="hidden" name="task[complete]" id="task_complete">
-            <input type="submit" value="NEEDS TO GET AUTHENTICITY TOKEN!" >
+            <input type="submit" value="Complete" >
         </form>
       </td>
     </tr>`;
@@ -43,17 +41,18 @@ class Task {
 
            <div class="row">
              <div class="col-8 col-sm-6 description_box">
-               ${this.description}
+                <h4> Description </h4><br>
+                ${this.description}
              </div>
             <div class="row">
-             <div class="col-8 col-sm-6 description_box">
+
                 Due: ${this.due_date}<br>
                 Create a checklist<br>
                 Add attachment <br>
                 Have a "complete task" button <br>
                 <a href="/projects/${this.project_id}/tasks/${this.id}/edit">Edit Task</a><br>
                 <a href="/projects/${this.project_id}/tasks/${this.id}">Delete Task Task</a>
-             </div>
+
              </div>
           </div>
         </div>

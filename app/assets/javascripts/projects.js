@@ -12,10 +12,8 @@ function completeTask(taskForm){
     dataType: 'json'
   }).done(function(json){
     if (json.complete){
-      debugger;
         $(`tr#row-${json.id}`).remove(); //remove task from table
-
-        alert("ISNT WORKING WHEN THE TASK IS DYNAMICALLY CREATE!!")
+        alert("Task marked completed")
     }
 
   })

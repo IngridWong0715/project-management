@@ -17,7 +17,7 @@
 </thead>
 <tbody>
   <% projects.each do |project| %>
-  <tr>
+  <tr id='row-<%=project.id%>'>
     <td><%= link_to project.name, project_path(project)%></td>
 
     <% if team_projects?(projects) %>
@@ -27,7 +27,18 @@
     <% end %>
 
     <td><%=formatted_datetime(project.due_date)%></td>
-    <td><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div></td>
+    <td>
+      <%= form_for(project, html: {class: 'complete_project'}) do |f| %>
+        <%= f.hidden_field :name, value: project.name %>
+        <%= f.hidden_field :description, value: project.description %>
+        <%= f.hidden_field :team_id, value: project.team_id %>
+        <%= f.hidden_field :user_id, value: project.user_id %>
+        <%= f.hidden_field :due_date, value: project.due_date %>
+        <%= f.hidden_field :complete, value: true %>
+        <%= f.submit 'Complete' %>
+        <%end %>
+
+    </td>
   </tr>
   <% end %>
 
