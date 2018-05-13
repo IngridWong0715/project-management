@@ -5,7 +5,6 @@ $(function(){
 
 
 function completeTask(taskForm){
-
   $.ajax({
     url: $(taskForm).attr('action'),
     method: 'PATCH',
@@ -13,8 +12,10 @@ function completeTask(taskForm){
     dataType: 'json'
   }).done(function(json){
     if (json.complete){
+      debugger;
         $(`tr#row-${json.id}`).remove(); //remove task from table
-        alert("MARKED COMPLETEEE!!!")
+
+        alert("ISNT WORKING WHEN THE TASK IS DYNAMICALLY CREATE!!")
     }
 
   })

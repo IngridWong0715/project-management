@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :project
   delegate :team, :user, :to => :project, :allow_nil => true #implements the belongs_to, through relationship
-  validates :name, :due_date, presence: true
+  validates :name, presence: true
 
   def get_previous_and_next_task_ids
     project_tasks = self.project.tasks
@@ -36,7 +36,9 @@ class Task < ApplicationRecord
     def self.past_due(user)
 
       all_user_tasks(user).select do |task|
-        task.due_date < DateTime.now
+        if task.due_date
+          task.due_date < DateTime.now
+        end
       end
     end
 
