@@ -13,7 +13,7 @@ class Task {
 
   formatDisplay(){
     let formatted =
-    `<tr>
+    `<tr id="row-${this.id}">
       <td><a href="http://localhost:3000/projects/${this.project_id}/tasks/${this.id}" data-task="${this.id}" class="task-link">${this.name}</a>
       <td>${this.description}</td>
       <td>${this.due_date}</td>

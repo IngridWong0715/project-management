@@ -5,7 +5,7 @@ $(function(){
 
 
 function completeTask(taskForm){
-  debugger;
+
   $.ajax({
     url: $(taskForm).attr('action'),
     method: 'PATCH',
@@ -14,7 +14,9 @@ function completeTask(taskForm){
   }).done(function(json){
     if (json.complete){
         $(`tr#row-${json.id}`).remove(); //remove task from table
+        alert("MARKED COMPLETEEE!!!")
     }
+
   })
 }
 
@@ -108,7 +110,7 @@ function addEventListeners(){
     loadSurroundingTaskShowPage('previous')
   });
 
-  $('form.complete_task').on('submit', function(e){
+  $('div.task-box').on('submit','form.complete_task',function(e){
     e.preventDefault();
     completeTask(this);
   });
