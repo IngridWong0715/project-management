@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :surrounding]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :surrounding, :complete_task]
     def index
       if params[:project_id]
         project = Project.find(params[:project_id])
@@ -28,11 +28,21 @@ class TasksController < ApplicationController
   end
 
   def update
+
     if @task.update(task_params)
-      redirect_to project_task_path(@task.project.id, @task.id)
+      respond_to do |f|
+        f.html {redirect_to project_task_path(@task.project.id, @task.id)}
+        f.json {render json: @task}
+      end
     else
-      flash[:notice] = "unable to update task"
-      render "tasks/form"
+      respond_to do |f|
+        f.html {
+          flash[:notice] = "unable to update task"
+          render "tasks/form"
+        }
+        f.json {render json: @task}
+      end
+
     end
   end
 
@@ -57,10 +67,11 @@ class TasksController < ApplicationController
     render json: surrounding_tasks
   end
 
+
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :project_id, :due_date, data: params[:task][:data].try(:keys))
+    params.require(:task).permit(:name, :description, :project_id, :due_date, :complete, data: params[:task][:data].try(:keys))
   end
 
   def set_task

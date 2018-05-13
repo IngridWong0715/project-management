@@ -14,7 +14,17 @@
         <td><a href="http://localhost:3000/projects/<%=task.project.id%>/tasks/<%=task.id%>" data-task="<%=task.id%>" class="task-link"><%=task.name%></a>
         <td><%=task.description%></td>
         <td><%=formatted_datetime(task.due_date) if task.due_date%></td>
-        <td><div class="checkbox checkbox-success"><input type="checkbox" class="styled completed" data-task="<%=task.id%>""><label></label></div></td>
+        <td><%= form_for([task.project, task], html: {class: 'complete_task'}) do |f| %>
+          <%= f.hidden_field :name, value: task.name %>
+          <%= f.hidden_field :description, value: task.description %>
+          <%= f.hidden_field :project_id, value: task.project.id %>
+          <%= f.hidden_field :due_date, value: task.due_date %>
+          <%= f.hidden_field :complete, value: true %>
+          <%= f.submit %>
+          <%end %>
+        </td>
+
+  <!-- <td><div class="checkbox checkbox-success"><input type="checkbox" class="styled completed" data-task="<%=task.id%>""><label></label></div></td> -->
       </tr>
     <% end %>
   <% end %>

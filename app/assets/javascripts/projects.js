@@ -1,14 +1,28 @@
 $(function(){
   addEventListeners();
-  $( "input[type=checkbox]" ).on( "click", completeTask);
+  $('form.complete_task').on('submit', function(e){
+    e.preventDefault();
+    completeTask(this);
+  });
 });
 
 
-function completeTask(){
-  let checkedTask = $( "input:checked" ).data('task')
-  //HOW TO TELL ACTIVERECORD DATABASE THAT THIS TASK IS NOW COMPLETE?
+function completeTask(taskForm){
 
-  $(`tr#row-${checkedTask}`).remove();
+  //let checkedTask = $( "input:checked" ).data('task')
+
+  $.ajax({
+    url: $(taskForm).attr('action'),
+    method: 'PATCH',
+    data: $(taskForm).serialize(),
+    dataType: 'json'
+  }).done(function(json){
+    if (json.complete){
+        $(`tr#row-${json.id}`).remove(); //remove task from table
+    }
+  })
+
+
 
 }
 
