@@ -17,7 +17,18 @@ class Task {
       <td><a href="http://localhost:3000/projects/${this.project_id}/tasks/${this.id}" data-task="${this.id}" class="task-link">${this.name}</a>
       <td>${this.description}</td>
       <td>${this.due_date}</td>
-      <td><div class="checkbox checkbox-success"><input type="checkbox" class="styled" data-task="${this.id}"><label></label></div></td>
+      <td>
+        <form class="complete_task" id="edit_task_${this.id}" action="/projects/${this.project_id}/tasks/${this.id}" method="post">
+          <input type="hidden" name="_method" value="patch">
+          <input type="hidden" name="authenticity_token" value="${$('meta[name="csrf-token"]')[0]['content']}">
+            <input value="${this.name}" type="hidden" name="task[name]" id="task_name">
+            <input value="${this.description}" type="hidden" name="task[description]" id="task_description">
+            <input value="${this.project_id}" type="hidden" name="task[project_id]" id="task_project_id">
+            <input value="${this.due_date}" type="hidden" name="task[due_date]" id="task_due_date">
+            <input value="true" type="hidden" name="task[complete]" id="task_complete">
+            <input type="submit" value="NEEDS TO GET AUTHENTICITY TOKEN!" >
+        </form>
+      </td>
     </tr>`;
     return formatted;
   }
@@ -34,15 +45,15 @@ class Task {
              <div class="col-8 col-sm-6 description_box">
                ${this.description}
              </div>
-             <div class="col-8 col-sm-6">
+            <div class="row">
+             <div class="col-8 col-sm-6 description_box">
                 Due: ${this.due_date}<br>
                 Create a checklist<br>
                 Add attachment <br>
                 Have a "complete task" button <br>
-                <div class="right_bottom_link">
-                  <a href="/projects/${this.project_id}/tasks/${this.id}/edit">Edit Task</a>
-                  <a href="/projects/${this.project_id}/tasks/${this.id}">Delete Task Task</a>
-                </div>
+                <a href="/projects/${this.project_id}/tasks/${this.id}/edit">Edit Task</a><br>
+                <a href="/projects/${this.project_id}/tasks/${this.id}">Delete Task Task</a>
+             </div>
              </div>
           </div>
         </div>

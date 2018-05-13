@@ -1,12 +1,18 @@
 <table class="table table-hover tasks_table">
-  <thead>
-    <tr>
-      <th scope="col">Task Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Deadline</th>
-      <th scope="col">Complete</th>
-    </tr>
-  </thead>
+  <tr>
+
+    <%= form_for ([@project,  @project.tasks.build]) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <%= f.label :due_date %>
+    <%= f.datetime_field :due_date %>
+    <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.submit %>
+    <% end %>
+
+  </tr>
   <tbody>
     <% tasks.each do |task| %>
     <% if task.persisted? %>
@@ -20,11 +26,9 @@
           <%= f.hidden_field :project_id, value: task.project.id %>
           <%= f.hidden_field :due_date, value: task.due_date %>
           <%= f.hidden_field :complete, value: true %>
-          <%= f.submit %>
+          <%= f.submit 'Complete' %>
           <%end %>
         </td>
-
-  <!-- <td><div class="checkbox checkbox-success"><input type="checkbox" class="styled completed" data-task="<%=task.id%>""><label></label></div></td> -->
       </tr>
     <% end %>
   <% end %>

@@ -1,23 +1,25 @@
 <div class="container formatted_show">
-  <h3 class="text-center"><%= @team.name %> </h3>
-  <div class="row">
-    <div class="col description_box">
-    <text_area>  Team Description: <%= @team.description %></text_area>
-    </div>
-    <div class="col">
-      Members:
-      <%= render partial:"/users/user", collection: @team.users %><br>
+  <div class="primary_info_box">
+    <h3 class="text-center"><%= @team.name %> </h3>
+    <div class="row">
+      <div class="col description_box">
+        <text_area>  Team Description: <%= @team.description %></text_area>
+      </div>
+      <div class="col">
+        Members:
+        <%= render partial:"/users/user", collection: @team.users %><br>
 
-      <div class="right_bottom_link">
-        <%= link_to 'Edit Team', edit_team_path(@team) %><br>
-        <%= link_to "Delete", @team, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+        <div class="right_bottom_link">
+          <%= link_to 'Edit Team', edit_team_path(@team) %><br>
+          <%= link_to "Delete", @team, method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
+        </div>
       </div>
     </div>
-  </div>
+  </div> <!-- END primary info box -->
 
   <div class="row">
     <div class="col tasks_display_box">
-      <a href="/teams/<%=@team.id%>/projects" data-id="<%=@team.id%>" class="view_projects">View Projects</a>
+      <a href="/teams/<%=@team.id%>/projects" data-id="<%=@team.id%>" class="view_projects">View Current Projects</a>
       <div class="projects">
       </div>
       <%= link_to 'Create new project', new_team_project_path(@team) %>

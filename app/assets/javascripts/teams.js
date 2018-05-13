@@ -7,14 +7,14 @@ $(function(){
 });
 
 
-function displayProject(project){
-  let teamId = $(project).data("id");
+function displayProject(projectLink){
+  let teamId = $(projectLink).data("id");
   let projectsString = '';
-  if (project.innerText=="Hide Projects"){
+  if (projectLink.innerText=="Hide Projects"){
     $("div.projects table").empty();
-    project.innerText = "View Projects"
+    projectLink.innerText = "View Projects"
   } else {
-    $.get(project.href, function(data) {
+    $.get(projectLink.href, function(data) {
       $("div.projects").html(`
         <table class="table table-hover" id="projects_table">
           <thead>
@@ -33,6 +33,6 @@ function displayProject(project){
       });
       $('table#projects_table tbody').html(projectsString);
     }, 'json');
-    project.innerText="Hide Projects";
+    projectLink.innerText="Hide Projects";
   }
 }

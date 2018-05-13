@@ -1,16 +1,11 @@
 $(function(){
   addEventListeners();
-  $('form.complete_task').on('submit', function(e){
-    e.preventDefault();
-    completeTask(this);
-  });
+
 });
 
 
 function completeTask(taskForm){
-
-  //let checkedTask = $( "input:checked" ).data('task')
-
+  debugger;
   $.ajax({
     url: $(taskForm).attr('action'),
     method: 'PATCH',
@@ -21,9 +16,6 @@ function completeTask(taskForm){
         $(`tr#row-${json.id}`).remove(); //remove task from table
     }
   })
-
-
-
 }
 
 class Project {
@@ -50,15 +42,12 @@ class Project {
 }
 
 
-function createNewTask(task){
-
-  $.post($(task).attr('action'), $(task).serialize(), function(data){
-
+function createNewTask(taskForm){
+  $.post($(taskForm).attr('action'), $(taskForm).serialize(), function(data){
     let task = new Task(data);
     task.set_surrounding_tasks();
     $('table.tasks_table tbody').append(task.formatDisplay());
     document.getElementById('new_task').reset()
-
   }, 'json');
 }
 
@@ -117,5 +106,10 @@ function addEventListeners(){
   $('div.task-box').on('click', '.previous-task', function(e){
     e.preventDefault();
     loadSurroundingTaskShowPage('previous')
+  });
+
+  $('form.complete_task').on('submit', function(e){
+    e.preventDefault();
+    completeTask(this);
   });
 }
