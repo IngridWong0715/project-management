@@ -1,5 +1,3 @@
-
-
 class Task {
   constructor(attributes){
     this.id = attributes.id;
@@ -8,11 +6,7 @@ class Task {
     this.project_id = attributes.project_id;
     this.due_date = attributes.due_date;
     this.complete = attributes.complete;
-    this._next = 0; //defaulting to 0 first... fix later
-    this._previous = 0;//defaulting to 0 first
-    //this.set_surrounding_tasks();
   }
-
 
   formatRowDisplay(){
     let formatted =
@@ -52,9 +46,10 @@ class Task {
             <div class="row">
 
                 Due: ${this.due_date}<br>
-                Create a checklist<br>
-                Add attachment <br>
-                Have a "complete task" button <br>
+                Status: ${this.complete ? 'Complete' : 'In Progress'}<br>
+                (Features to add?
+                  - Create a checklist<br>
+                  - Add attachment <br>)
                 <a href="/projects/${this.project_id}/tasks/${this.id}/edit">Edit Task</a><br>
                 <a href="/projects/${this.project_id}/tasks/${this.id}">Delete Task Task</a>
              </div>
@@ -64,22 +59,95 @@ class Task {
     </div>`;
     return formatted;
   }
-
-  //CODE NOT WORKING:
-  set next(newNext){
-    this._next = newNext; // look into this _ convention:
-  }
-
-  set previous(newPrevious){
-    this._previous = newPrevious;
-  }
-
-  set_surrounding_tasks(){//SETS TASK.PREVIOUS_TASK_ID & TAKS.NEXT_TASK_ID
-    var task = this;
-    $.get(`http://localhost:3000/projects/${this.project_id}/tasks/${this.id}/surrounding_tasks`, function(data){
-      task.next = data['next']
-      task.previous = data['previous']
-    });
-  }
-  //NOT WORKING
 } // END CLASS TASK
+
+
+function completeTask(taskForm){
+  $.ajax({
+    url: $(taskForm).attr('action'),
+    method: 'PATCH',
+    data: $(taskForm).serialize(),
+    dataType: 'json'
+  }).done(function(json){
+    if (json.complete){
+
+        $(`tr#row-${json.id}`).remove(); //remove task from table
+        alert("Task marked completed")
+    }
+  })
+}
+
+
+function createNewTask(taskForm){
+  $('input').removeAttr('data-disable-with')
+  $.post($(taskForm).attr('action'), $(taskForm).serialize(), function(data){
+    let task = new Task(data);
+
+    $('table.tasks_table tbody').append(task.formatRowDisplay());
+    //$('#task_name').val('')
+    $( '#new_task' ).each(function(){
+      this.reset();
+    });
+    alert("ISSUE 1: RESET NOT WORKING PROPERLY. ISSUE 2: TASK IS ADDED TO THE BEGINNING AND END OF THE LIST")
+    // document.getElementById('new_task').reset();
+  }, 'json');
+}
+
+function loadSurroundingTaskShowPage(position){
+  // IS THERE A BETTER WAY TO STORE AND GET PROJECT AND TASK?
+  let project = $(this).data('project');
+  let task = $('div.task-box').data('task');
+
+  // fetch previoius/next task, depending on the position argument:
+    $.get(`http://localhost:3000/projects/${project}/tasks/${task}/${position}`, function(data){
+      if (data) {
+        $.get(`http://localhost:3000/projects/${project}/tasks/${data}`, function(data){
+
+          let task = new Task(data);
+          $('div.task-box').html(task.formatShowPage());
+
+          //pass the id into task-box
+          //to reference for next cycle of loadSurroundingTaskShowPage() invokation:
+          $('div.task-box').data('task', task.id);
+        },'json')
+      } else {
+        let index = (position == 'previous') ? 'first' : 'last';
+        alert(`You're viewing the ${index} task`);
+      }
+    }, 'json');
+}
+
+function loadTaskShowPage(taskLink){
+  $.get(taskLink.href, function(data){
+    let task = new Task(data);
+    $('div.task-box').html(task.formatShowPage());
+  }, 'json');
+  // ASK!!!(ideally, want to add the dynamically created next and previous links: but can't because it's ASYNC)
+  // so save a data-task = current_task.id to the div.task-box for future reference
+  $('div.task-box').data('task', $(taskLink).data('task'));
+}
+
+function loadTasksIndexPage(projectLink){
+  $.get(projectLink.href, function(data){
+
+    let taskIndexFormat = `
+      <table class="table table-hover tasks_table">
+        <tr>
+          GET THE NEW TASK FORM
+        </tr>
+      <tbody>
+    `
+
+    for (let taskDetails of data){
+      let task = new Task(taskDetails);
+      taskIndexFormat += task.formatRowDisplay();
+    }
+
+    taskIndexFormat += `
+       </tbody>
+     </table>`;
+
+     $('div.task-box').html(taskIndexFormat);
+
+  })
+}

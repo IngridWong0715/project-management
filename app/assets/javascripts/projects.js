@@ -1,22 +1,7 @@
 $(function(){
-  addEventListeners();
+  addProjectEventListeners();
 });
 
-
-function completeTask(taskForm){
-  $.ajax({
-    url: $(taskForm).attr('action'),
-    method: 'PATCH',
-    data: $(taskForm).serialize(),
-    dataType: 'json'
-  }).done(function(json){
-    if (json.complete){
-
-        $(`tr#row-${json.id}`).remove(); //remove task from table
-        alert("Task marked completed")
-    }
-  })
-}
 
 class Project {
   constructor(attributes){
@@ -42,81 +27,57 @@ class Project {
 }
 
 
-function createNewTask(taskForm){
-  $('input').removeAttr('data-disable-with')
-  $.post($(taskForm).attr('action'), $(taskForm).serialize(), function(data){
-    let task = new Task(data);
+function completeProject(projectForm){
+  $.ajax({
+    url: $(projectForm).attr('action'),
+    method: 'PATCH',
+    data: $(projectForm).serialize(),
+    dataType: 'json'
 
-    $('table.tasks_table tbody').append(task.formatRowDisplay());
-    //$('#task_name').val('')
-    $( '#new_task' ).each(function(){
-      this.reset();
-    });
-    alert("ISSUE 1: RESET NOT WORKING PROPERLY. ISSUE 2: TASK IS ADDED TO THE BEGINNING AND END OF THE LIST")
-    // document.getElementById('new_task').reset();
-  }, 'json');
-}
-
-function loadSurroundingTaskShowPage(position){
-  // IS THERE A BETTER WAY TO STORE AND GET PROJECT AND TASK?
-  let project = $(this).data('project');
-  let task = $('div.task-box').data('task');
-
-  // fetch previoius/next task, depending on the position argument:
-    $.get(`http://localhost:3000/projects/${project}/tasks/${task}/${position}`, function(data){
-      if (data) {
-        $.get(`http://localhost:3000/projects/${project}/tasks/${data}`, function(data){
-
-          let task = new Task(data);
-          $('div.task-box').html(task.formatShowPage());
-
-          //pass the id into task-box
-          //to reference for next cycle of loadSurroundingTaskShowPage() invokation:
-          $('div.task-box').data('task', task.id);
-        },'json')
-      } else {
-        let index = (position == 'previous') ? 'first' : 'last';
-        alert(`You're viewing the ${index} task`);
-      }
-    }, 'json');
-}
-
-function loadTaskShowPage(taskLink){
-  $.get(taskLink.href, function(data){
-    let task = new Task(data);
-    $('div.task-box').html(task.formatShowPage());
-  }, 'json');
-  // ASK!!!(ideally, want to add the dynamically created next and previous links: but can't because it's ASYNC)
-  // so save a data-task = current_task.id to the div.task-box for future reference
-  $('div.task-box').data('task', $(taskLink).data('task'));
-}
-
-function loadTasksIndexPage(projectLink){
-  $.get(projectLink.href, function(data){
-
-    let taskIndexFormat = `
-      <table class="table table-hover tasks_table">
-        <tr>
-          GET THE NEW TASK FORM
-        </tr>
-      <tbody>
-    `
-
-    for (let taskDetails of data){
-      let task = new Task(taskDetails);
-      taskIndexFormat += task.formatRowDisplay();
+  }).done(function(json){
+    debugger;
+    if (json.complete){
+        $(`tr#row-${json.id}`).remove(); 
+        alert("Project marked completed");
     }
-
-    taskIndexFormat += `
-       </tbody>
-     </table>`;
-
-     $('div.task-box').html(taskIndexFormat);
-
-  })
+  });
 }
 
-function addEventListeners(){
+
+function displayProject(projectLink){
+  let teamId = $(projectLink).data("id");
+  let projectsString = '';
+  if (projectLink.innerText=="Hide Projects"){
+    $("div.projects table").empty();
+    projectLink.innerText = "View Projects"
+  } else {
+    $.get(projectLink.href, function(data) {
+      $("div.projects").html(`
+        <table class="table table-hover" id="projects_table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Deadline</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>`);
+
+        for (let projectAttributes of data){
+          let project = new Project(projectAttributes);
+          projectsString +=project.formatProject();
+        }
+
+      $('table#projects_table tbody').html(projectsString);
+    }, 'json');
+    projectLink.innerText="Hide Projects";
+  }
+}
+
+
+function addProjectEventListeners(){
   $('form#new_task').on('submit', function(e){
     e.preventDefault();
     createNewTask(this);
