@@ -1,4 +1,6 @@
-<div class="container">
+NOT NEEDED: ONLY RENDERING TASK THROUGH AJAX/JSON VIA PROJECT SHOW PAGE
+
+<!-- <div class="container">
 
   <div class="row">
 
@@ -16,7 +18,7 @@
             Create a checklist<br>
             Add attachment <br>
 
-            Status: <%= (@task.complete ? : 'completed' : 'in progress') %> <br>
+            Status: <%= (@task.complete ? 'completed' : 'in progress') %> <br>
             <div class="right_bottom_link">
               <%= link_to("Edit Task", edit_project_task_path(@task.project.id, @task.id)) %><br>
               <%= link_to "Delete Task", project_task_path(@task.project.id, @task.id), method: :delete, data: {confirm: "Are you sure? This action cannot be undone."} %>
@@ -26,4 +28,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

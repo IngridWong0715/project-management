@@ -1,8 +1,3 @@
-$(function(){
-  addProjectEventListeners();
-});
-
-
 class Project {
   constructor(attributes){
     this.id = attributes.id;
@@ -26,7 +21,6 @@ class Project {
   }
 }
 
-
 function completeProject(projectForm){
   $.ajax({
     url: $(projectForm).attr('action'),
@@ -35,14 +29,13 @@ function completeProject(projectForm){
     dataType: 'json'
 
   }).done(function(json){
-    debugger;
+
     if (json.complete){
-        $(`tr#row-${json.id}`).remove(); 
+        $(`tr#row-${json.id}`).remove();
         alert("Project marked completed");
     }
   });
 }
-
 
 function displayProject(projectLink){
   let teamId = $(projectLink).data("id");
@@ -75,6 +68,10 @@ function displayProject(projectLink){
     projectLink.innerText="Hide Projects";
   }
 }
+
+$(function(){
+  addProjectEventListeners();
+});
 
 
 function addProjectEventListeners(){
