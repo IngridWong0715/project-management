@@ -12,8 +12,6 @@ $(function(){
 
 });
 
-
-
 function completeProject(projectForm){
   $.ajax({
     url: $(projectForm).attr('action'),
@@ -56,7 +54,7 @@ function displayProject(projectLink){
           let project = new Project(projectAttributes);
           projectsString +=project.formatProject();
         }
-    
+
       $('table#projects_table tbody').html(projectsString);
     }, 'json');
     projectLink.innerText="Hide Projects";

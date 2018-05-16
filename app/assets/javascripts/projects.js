@@ -43,10 +43,12 @@ class Project {
 
 
 function createNewTask(taskForm){
+  $('input').removeAttr('data-disable-with')
   $.post($(taskForm).attr('action'), $(taskForm).serialize(), function(data){
     let task = new Task(data);
 
     $('table.tasks_table tbody').append(task.formatRowDisplay());
+    //$('#task_name').val('')
     $( '#new_task' ).each(function(){
       this.reset();
     });
@@ -55,17 +57,16 @@ function createNewTask(taskForm){
   }, 'json');
 }
 
-//SEPERATE INTO NEXT & PREVIOUS???
 function loadSurroundingTaskShowPage(position){
   // IS THERE A BETTER WAY TO STORE AND GET PROJECT AND TASK?
   let project = $(this).data('project');
   let task = $('div.task-box').data('task');
 
   // fetch previoius/next task, depending on the position argument:
-    $.get(`http://localhost:3000/projects/${project}/tasks/${task}/surrounding_tasks`, function(data){
-      let searchedTask = data[position]
-      if (searchedTask) {
-        $.get(`http://localhost:3000/projects/${project}/tasks/${searchedTask}`, function(data){
+    $.get(`http://localhost:3000/projects/${project}/tasks/${task}/${position}`, function(data){
+      if (data) {
+        $.get(`http://localhost:3000/projects/${project}/tasks/${data}`, function(data){
+
           let task = new Task(data);
           $('div.task-box').html(task.formatShowPage());
 
@@ -92,7 +93,7 @@ function loadTaskShowPage(taskLink){
 
 function loadTasksIndexPage(projectLink){
   $.get(projectLink.href, function(data){
-  
+
     let taskIndexFormat = `
       <table class="table table-hover tasks_table">
         <tr>

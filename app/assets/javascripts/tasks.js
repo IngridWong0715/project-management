@@ -1,3 +1,5 @@
+
+
 class Task {
   constructor(attributes){
     this.id = attributes.id;
@@ -11,7 +13,6 @@ class Task {
     //this.set_surrounding_tasks();
   }
 
-  //Task.indexShell = `hi`;
 
   formatRowDisplay(){
     let formatted =
@@ -56,7 +57,6 @@ class Task {
                 Have a "complete task" button <br>
                 <a href="/projects/${this.project_id}/tasks/${this.id}/edit">Edit Task</a><br>
                 <a href="/projects/${this.project_id}/tasks/${this.id}">Delete Task Task</a>
-
              </div>
           </div>
         </div>

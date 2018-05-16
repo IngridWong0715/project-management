@@ -1,14 +1,17 @@
 <table class="table table-hover tasks_table">
-  <tr>
-    NOT RENDERING A FORM WITH ID: NEW_TAKS
-    <%= form_for [project,  project.tasks.build], :html => { :id => 'new_task'} do |f| %>
-    <%= f.text_field :name, placeholder:"New Task" %>
-    <%= f.hidden_field :project_id, value: project.id %>
-    <%= f.submit %>
-    <% end %>
 
-  </tr>
+
   <tbody>
+
+    <tr>
+      NOT RENDERING A FORM WITH ID: NEW_TAKS
+      <%= form_for [project,  project.tasks.build], :html => { :id => 'new_task'} do |f| %>
+        <%= f.text_field :name, placeholder:"New Task" %>
+        <%= f.hidden_field :project_id, value: project.id %>
+        <%= f.submit %>
+      <% end %>
+    </tr>
+
     <% tasks.each do |task| %>
     <% if task.persisted? %>
       <tr id="row-<%=task.id%>">

@@ -8,10 +8,17 @@ class Task < ApplicationRecord
     task_index = project_tasks.index(self)
     previous_project = task_index > 0 ? project_tasks[task_index - 1].id : nil
     next_project = task_index < (project_tasks.length - 1) ? project_tasks[task_index + 1].id : nil
-
+    
     {previous: previous_project, next: next_project}
   end
 
+  def get_next_task_id
+    get_previous_and_next_task_ids[:next]
+  end
+
+  def get_previous_task_id
+      get_previous_and_next_task_ids[:previous]
+  end
     def self.individual_tasks(user)
       user.tasks
       # SELECT  "tasks".* FROM "tasks" INNER JOIN "projects" ON "tasks"."project_id" = "projects"."id" WHERE "projects"."user_id" = ? LIMIT ?  [["user_id", 1], ["LIMIT", 11]]

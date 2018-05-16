@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :tasks, except: [:new]
   end
 
-  get '/projects/:project_id/tasks/:id/surrounding_tasks', to: 'tasks#surrounding'
+  get '/projects/:project_id/tasks/:id/next', to: 'tasks#next'
+  get '/projects/:project_id/tasks/:id/previous', to: 'tasks#previous'
 
 end

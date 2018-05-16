@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :surrounding, :complete_task]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :next, :previous, :complete_task]
     def index
       if params[:project_id]
         project = Project.find(params[:project_id])
@@ -61,11 +61,16 @@ class TasksController < ApplicationController
 
   end
 
-  def surrounding
-    surrounding_tasks = @task.get_previous_and_next_task_ids
-    render json: surrounding_tasks
+  def next
+    next_task = @task.get_next_task_id
+    render json: next_task
+
   end
 
+  def previous
+    previous_task = @task.get_previous_task_id
+    render json: previous_task
+  end
 
   private
 
