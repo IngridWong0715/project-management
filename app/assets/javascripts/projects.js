@@ -1,6 +1,5 @@
 $(function(){
   addEventListeners();
-
 });
 
 
@@ -12,10 +11,10 @@ function completeTask(taskForm){
     dataType: 'json'
   }).done(function(json){
     if (json.complete){
+
         $(`tr#row-${json.id}`).remove(); //remove task from table
         alert("Task marked completed")
     }
-
   })
 }
 
@@ -46,30 +45,33 @@ class Project {
 function createNewTask(taskForm){
   $.post($(taskForm).attr('action'), $(taskForm).serialize(), function(data){
     let task = new Task(data);
-    task.set_surrounding_tasks();
-    $('table.tasks_table tbody').append(task.formatDisplay());
-    document.getElementById('new_task').reset()
+
+    $('table.tasks_table tbody').append(task.formatRowDisplay());
+    $( '#new_task' ).each(function(){
+      this.reset();
+    });
+    alert("ISSUE 1: RESET NOT WORKING PROPERLY. ISSUE 2: TASK IS ADDED TO THE BEGINNING AND END OF THE LIST")
+    // document.getElementById('new_task').reset();
   }, 'json');
 }
 
+//SEPERATE INTO NEXT & PREVIOUS???
 function loadSurroundingTaskShowPage(position){
   // IS THERE A BETTER WAY TO STORE AND GET PROJECT AND TASK?
   let project = $(this).data('project');
   let task = $('div.task-box').data('task');
 
-  // fetch previoius/next task, depending on the position argument
+  // fetch previoius/next task, depending on the position argument:
     $.get(`http://localhost:3000/projects/${project}/tasks/${task}/surrounding_tasks`, function(data){
       let searchedTask = data[position]
       if (searchedTask) {
         $.get(`http://localhost:3000/projects/${project}/tasks/${searchedTask}`, function(data){
           let task = new Task(data);
-          $('div.task-box').html(task.formatShow());
+          $('div.task-box').html(task.formatShowPage());
 
-          // newReferenceTask is the current task, that is then passed into task-box
+          //pass the id into task-box
           //to reference for next cycle of loadSurroundingTaskShowPage() invokation:
-          let taskId = this.url.split('/')
-          let newReferenceTask = taskId[taskId.length-1]
-          $('div.task-box').data('task', newReferenceTask);
+          $('div.task-box').data('task', task.id);
         },'json')
       } else {
         let index = (position == 'previous') ? 'first' : 'last';
@@ -81,11 +83,36 @@ function loadSurroundingTaskShowPage(position){
 function loadTaskShowPage(taskLink){
   $.get(taskLink.href, function(data){
     let task = new Task(data);
-    $('div.task-box').html(task.formatShow());
+    $('div.task-box').html(task.formatShowPage());
   }, 'json');
   // ASK!!!(ideally, want to add the dynamically created next and previous links: but can't because it's ASYNC)
   // so save a data-task = current_task.id to the div.task-box for future reference
   $('div.task-box').data('task', $(taskLink).data('task'));
+}
+
+function loadTasksIndexPage(projectLink){
+  $.get(projectLink.href, function(data){
+  
+    let taskIndexFormat = `
+      <table class="table table-hover tasks_table">
+        <tr>
+          GET THE NEW TASK FORM
+        </tr>
+      <tbody>
+    `
+
+    for (let taskDetails of data){
+      let task = new Task(taskDetails);
+      taskIndexFormat += task.formatRowDisplay();
+    }
+
+    taskIndexFormat += `
+       </tbody>
+     </table>`;
+
+     $('div.task-box').html(taskIndexFormat);
+
+  })
 }
 
 function addEventListeners(){
@@ -113,4 +140,9 @@ function addEventListeners(){
     e.preventDefault();
     completeTask(this);
   });
+
+  $('div.task-box').on('click', '.task-index', function(e){
+    e.preventDefault();
+    loadTasksIndexPage(this);
+  })
 }

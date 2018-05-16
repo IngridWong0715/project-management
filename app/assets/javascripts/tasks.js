@@ -11,7 +11,9 @@ class Task {
     //this.set_surrounding_tasks();
   }
 
-  formatDisplay(){
+  //Task.indexShell = `hi`;
+
+  formatRowDisplay(){
     let formatted =
     `<tr id="row-${this.id}">
       <td><a href="http://localhost:3000/projects/${this.project_id}/tasks/${this.id}" data-task="${this.id}" class="task-link">${this.name}</a>
@@ -31,9 +33,11 @@ class Task {
     return formatted;
   }
 
-  formatShow(){
+  formatShowPage(){
     let formatted = `<div class="container">
+
       <div class="row">
+      <a href="http://localhost:3000/projects/${this.project_id}/tasks" class="task-index">Tasks Index Page</a>
          <div class="col formatted_show">
            <h3 class="text-center">${this.name} </h3>
            <a href="#" class="previous-task" data-project="${this.project_id}">Previous Task | </a>

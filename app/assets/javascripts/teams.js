@@ -51,10 +51,12 @@ function displayProject(projectLink){
           <tbody>
           </tbody>
         </table>`);
-      data.forEach(function(projectAttributes){
-        let project = new Project(projectAttributes);
-        projectsString +=project.formatProject();
-      });
+
+        for (let projectAttributes of data){
+          let project = new Project(projectAttributes);
+          projectsString +=project.formatProject();
+        }
+    
       $('table#projects_table tbody').html(projectsString);
     }, 'json');
     projectLink.innerText="Hide Projects";

@@ -28,7 +28,6 @@ class TasksController < ApplicationController
   end
 
   def update
-
     if @task.update(task_params)
       respond_to do |f|
         f.html {redirect_to project_task_path(@task.project.id, @task.id)}
