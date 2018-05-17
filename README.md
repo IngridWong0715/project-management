@@ -1,27 +1,51 @@
-# README
+# Project Management
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project Management lets user easily manage individual projects and collaborate on team projects.
+For any project, the user can create and edit, add tasks, and share with a team.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+What things you need to install the software and how to install them
 
-* Database creation
+```
+Give examples
+```
 
-* Database initialization
+### Installing
 
-* How to run the test suite
+Step 1. Fork and clone the repo from https://github.com/IngridWong0715/project-management
+Step 2. Run `bundle install` to install all dependencies
+Step 3. Migrate and seed the the database with `rake db:migrate` and `rake db:seed`
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+## Built With
+* Ruby on Rails
+* Javascript & jQuery
+
+## Contributing
+
+For any issue, please file an issue with a pull request.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+
+## Authors
+
+* **Ingrid Wong** - *Initial work* - [Ingrid Wong](https://github.com/IngridWong0715)
+
+See also the list of [contributors](https://github.com/IngridWong0715/project-management/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
 
 
 FOR USER.RB
