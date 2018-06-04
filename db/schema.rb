@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_20_162835) do
+ActiveRecord::Schema.define(version: 2018_05_30_163731) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.integer "parentid"
+    t.string "country"
+    t.integer "woeid"
+    t.string "countryCode"
+    t.integer "twitter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "visited_by"
+    t.string "title"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -42,6 +62,16 @@ ActiveRecord::Schema.define(version: 2018_04_20_162835) do
     t.string "name"
     t.string "function"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.integer "twitter_id"
+    t.string "text"
+    t.datetime "twitter_created_at"
+    t.string "location"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
